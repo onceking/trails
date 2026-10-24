@@ -1,0 +1,2477 @@
+{
+  "type": "FeatureCollection",
+  "name": "ny_ramblers_fall_2026_trails",
+  "metadata": {
+    "source": "New York Ramblers Hiking Club Official Schedule (https://www.nyramblers.org/schedule/)",
+    "attribution": "Hike schedule & descriptions \u00a9 The New York Ramblers, Inc. All rights reserved. Cartographic reference: NY-NJ Trail Conference (https://www.nynjtc.org/)."
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 1,
+        "date": "Sun. Oct. 4, 2026",
+        "title": "Fourteen Hills: A Circular",
+        "region": "Harriman State Park, NY",
+        "leader": "Hugues",
+        "distance_mi": 15.2,
+        "elevation_gain_ft": 3450,
+        "max_elev_ft": 1290,
+        "route_type": "Out-and-Back / Circular",
+        "map_ref": "NY-NJTC Map 118",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Sloatsburg, NY (Rt 17 & Mill St / Rail Station)",
+          "mode": "Bus / Rail",
+          "hub": "Port Authority Bus Terminal (Gate 408) or Penn Station",
+          "details": "Coach USA ShortLine Hudson Bus from PABT Gate 408 to Rt 17 & Mill St, Sloatsburg (~61 min; schedule notes bus substitution), or NJ Transit Port Jervis Line via Secaucus Junction (~79 min).",
+          "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Rt+17+%26+Mill+St+-+Sloatsburg/data=!4m5!4m4!2m2!6e0!8j1792868766!3e3",
+          "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+        },
+        "transit_end": {
+          "station": "Sloatsburg, NY (Rt 17 & Mill St / Rail Station)",
+          "mode": "Bus / Rail",
+          "hub": "Port Authority Bus Terminal or Penn Station",
+          "details": "Return via Coach USA ShortLine Hudson Bus from Rt 17 & Mill St to PABT (~61 min) or NJ Transit Port Jervis Line from Sloatsburg Station to Secaucus / Penn Station (~79 min).",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Sloatsburg/data=!4m5!4m4!2m2!6e0!8j1792854245!3e3",
+          "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.1912,
+            41.1565,
+            350
+          ],
+          [
+            -74.178,
+            41.1585,
+            460
+          ],
+          [
+            -74.1655,
+            41.1632,
+            680
+          ],
+          [
+            -74.1585,
+            41.1601,
+            1120
+          ],
+          [
+            -74.151,
+            41.1685,
+            1080
+          ],
+          [
+            -74.145,
+            41.174,
+            820
+          ],
+          [
+            -74.136,
+            41.1865,
+            1290
+          ],
+          [
+            -74.1325,
+            41.192,
+            785
+          ],
+          [
+            -74.136,
+            41.1865,
+            1290
+          ],
+          [
+            -74.151,
+            41.1685,
+            1080
+          ],
+          [
+            -74.1585,
+            41.1601,
+            1120
+          ],
+          [
+            -74.178,
+            41.1585,
+            460
+          ],
+          [
+            -74.1912,
+            41.1565,
+            350
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 1,
+        "name": "Sloatsburg Station",
+        "distance_mi": 0.0,
+        "elevation_ft": 350,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1912,
+          41.1565,
+          350
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 2,
+        "name": "Pine Meadow Trailhead",
+        "distance_mi": 1.1,
+        "elevation_ft": 460,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.178,
+          41.1585,
+          460
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 3,
+        "name": "Seven Hills Jct",
+        "distance_mi": 2.2,
+        "elevation_ft": 680,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1655,
+          41.1632,
+          680
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 4,
+        "name": "Ramapo Torne",
+        "distance_mi": 3.1,
+        "elevation_ft": 1120,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1585,
+          41.1601,
+          1120
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 5,
+        "name": "Russian Bear & Torne View",
+        "distance_mi": 4.3,
+        "elevation_ft": 1080,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.151,
+          41.1685,
+          1080
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 6,
+        "name": "HTS Trail Crossing",
+        "distance_mi": 5.4,
+        "elevation_ft": 820,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.145,
+          41.174,
+          820
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 7,
+        "name": "Diamond Mountain",
+        "distance_mi": 6.6,
+        "elevation_ft": 1290,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.136,
+          41.1865,
+          1290
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 8,
+        "name": "Lake Sebago Turnaround",
+        "distance_mi": 7.6,
+        "elevation_ft": 785,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1325,
+          41.192,
+          785
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 9,
+        "name": "Diamond Mtn (Return)",
+        "distance_mi": 8.6,
+        "elevation_ft": 1290,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.136,
+          41.1865,
+          1290
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 10,
+        "name": "Torne View (Return)",
+        "distance_mi": 10.9,
+        "elevation_ft": 1080,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.151,
+          41.1685,
+          1080
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 11,
+        "name": "Ramapo Torne (Return)",
+        "distance_mi": 12.1,
+        "elevation_ft": 1120,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1585,
+          41.1601,
+          1120
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 12,
+        "name": "Pine Meadow Tr (Return)",
+        "distance_mi": 14.1,
+        "elevation_ft": 460,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.178,
+          41.1585,
+          460
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 1,
+        "hike_title": "Fourteen Hills: A Circular",
+        "waypoint_order": 13,
+        "name": "Sloatsburg Station",
+        "distance_mi": 15.2,
+        "elevation_ft": 350,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1912,
+          41.1565,
+          350
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 2,
+        "date": "Sun. Oct. 11, 2026",
+        "title": "Salt Hill State Forest: A Circular",
+        "region": "Westchester County, NY",
+        "leader": "Chris",
+        "distance_mi": 16.4,
+        "elevation_gain_ft": 2150,
+        "max_elev_ft": 700,
+        "route_type": "Circular Loop",
+        "map_ref": "Westchester Trails / Salt Hill SF",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Croton-Harmon Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North Hudson Line direct from Grand Central Terminal to Croton-Harmon (~49\u201354 min, departures every 18\u201330 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Croton-Harmon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        },
+        "transit_end": {
+          "station": "Croton-Harmon Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North Hudson Line direct from Croton-Harmon back to Grand Central Terminal (~50 min, departures every 20\u201330 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Croton-Harmon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.8825,
+            41.1897,
+            15
+          ],
+          [
+            -73.881,
+            41.201,
+            60
+          ],
+          [
+            -73.876,
+            41.213,
+            260
+          ],
+          [
+            -73.8695,
+            41.2215,
+            380
+          ],
+          [
+            -73.874,
+            41.231,
+            520
+          ],
+          [
+            -73.865,
+            41.242,
+            440
+          ],
+          [
+            -73.849,
+            41.2485,
+            560
+          ],
+          [
+            -73.842,
+            41.251,
+            699
+          ],
+          [
+            -73.845,
+            41.238,
+            240
+          ],
+          [
+            -73.856,
+            41.2265,
+            210
+          ],
+          [
+            -73.872,
+            41.209,
+            140
+          ],
+          [
+            -73.8825,
+            41.1897,
+            15
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 1,
+        "name": "Croton-Harmon Station",
+        "distance_mi": 0.0,
+        "elevation_ft": 15,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8825,
+          41.1897,
+          15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 2,
+        "name": "Croton River Walk",
+        "distance_mi": 1.3,
+        "elevation_ft": 60,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.881,
+          41.201,
+          60
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 3,
+        "name": "Kaplan's Pond",
+        "distance_mi": 2.8,
+        "elevation_ft": 260,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.876,
+          41.213,
+          260
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 4,
+        "name": "Lytle Arboretum",
+        "distance_mi": 4.1,
+        "elevation_ft": 380,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8695,
+          41.2215,
+          380
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 5,
+        "name": "Highland Trail Viewpoint",
+        "distance_mi": 5.5,
+        "elevation_ft": 520,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.874,
+          41.231,
+          520
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 6,
+        "name": "Valeria / BP Trailway",
+        "distance_mi": 7.4,
+        "elevation_ft": 440,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.865,
+          41.242,
+          440
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 7,
+        "name": "Salt Hill SF (Leander's Way)",
+        "distance_mi": 9.2,
+        "elevation_ft": 560,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.849,
+          41.2485,
+          560
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 8,
+        "name": "Nelson Mtn Tower Site",
+        "distance_mi": 10.3,
+        "elevation_ft": 699,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.842,
+          41.251,
+          699
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 9,
+        "name": "Rte 129 Descent",
+        "distance_mi": 11.8,
+        "elevation_ft": 240,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.845,
+          41.238,
+          240
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 10,
+        "name": "New Croton Dam",
+        "distance_mi": 13.2,
+        "elevation_ft": 210,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.856,
+          41.2265,
+          210
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 11,
+        "name": "Old Croton Aqueduct",
+        "distance_mi": 14.9,
+        "elevation_ft": 140,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.872,
+          41.209,
+          140
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 2,
+        "hike_title": "Salt Hill State Forest: A Circular",
+        "waypoint_order": 12,
+        "name": "Croton-Harmon Station",
+        "distance_mi": 16.4,
+        "elevation_ft": 15,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.8825,
+          41.1897,
+          15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 3,
+        "date": "Sat. Oct. 17, 2026",
+        "title": "Rye to Mamaroneck Along the Sound",
+        "region": "Westchester Sound Shore, NY",
+        "leader": "Ingrid (substituting for Zee)",
+        "distance_mi": 13.0,
+        "elevation_gain_ft": 420,
+        "max_elev_ft": 85,
+        "route_type": "Point-to-Point Coastal Walk",
+        "map_ref": "Westchester County Parks Coastal Sanctuaries",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Rye Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North New Haven Line direct from Grand Central Terminal (towards Stamford) to Rye (~49 min, departures every 30 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Rye/data=!4m5!4m4!2m2!6e0!8j1792848960!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        },
+        "transit_end": {
+          "station": "Mamaroneck Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North New Haven Line direct from Mamaroneck back to Grand Central Terminal (~42 min, departures every 30 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Mamaroneck/data=!4m5!4m4!2m2!6e0!8j1792848960!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.6836,
+            40.9856,
+            65
+          ],
+          [
+            -73.694,
+            40.974,
+            85
+          ],
+          [
+            -73.666,
+            40.968,
+            20
+          ],
+          [
+            -73.6725,
+            40.964,
+            10
+          ],
+          [
+            -73.681,
+            40.9605,
+            25
+          ],
+          [
+            -73.7005,
+            40.952,
+            45
+          ],
+          [
+            -73.7195,
+            40.9415,
+            15
+          ],
+          [
+            -73.7361,
+            40.9547,
+            50
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 1,
+        "name": "Rye Station",
+        "distance_mi": 0.0,
+        "elevation_ft": 65,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6836,
+          40.9856,
+          65
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 2,
+        "name": "Rye Nature Center",
+        "distance_mi": 1.4,
+        "elevation_ft": 85,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.694,
+          40.974,
+          85
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 3,
+        "name": "Edith Read Sanctuary",
+        "distance_mi": 4.2,
+        "elevation_ft": 20,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.666,
+          40.968,
+          20
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 4,
+        "name": "Playland Beach",
+        "distance_mi": 5.5,
+        "elevation_ft": 10,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.6725,
+          40.964,
+          10
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 5,
+        "name": "Rye Town Park & Oakland Beach",
+        "distance_mi": 6.8,
+        "elevation_ft": 25,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.681,
+          40.9605,
+          25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 6,
+        "name": "Marshlands Conservancy",
+        "distance_mi": 9.3,
+        "elevation_ft": 45,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7005,
+          40.952,
+          45
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 7,
+        "name": "Otter Creek Preserve",
+        "distance_mi": 11.4,
+        "elevation_ft": 15,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7195,
+          40.9415,
+          15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 3,
+        "hike_title": "Rye to Mamaroneck Along the Sound",
+        "waypoint_order": 8,
+        "name": "Mamaroneck Station",
+        "distance_mi": 13.0,
+        "elevation_ft": 50,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.7361,
+          40.9547,
+          50
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 4,
+        "date": "Sun. Oct. 25, 2026",
+        "title": "Torrey Memorial",
+        "region": "Bear Mountain State Park, NY",
+        "leader": "Leah",
+        "distance_mi": 14.7,
+        "elevation_gain_ft": 3255,
+        "max_elev_ft": 1280,
+        "route_type": "Point-to-Point Ridge & Gorge Traverse",
+        "map_ref": "NY-NJTC Map 119",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Route 32 & Smith Clove Rd (Highland Mills / Central Valley, NY)",
+          "mode": "Intercity Bus",
+          "hub": "Port Authority Bus Terminal (Gate 405 / 409)",
+          "details": "Coach USA ShortLine Hudson Bus (Route 32 corridor towards Newburgh via Central Valley) from Port Authority Bus Terminal to Rt 32 & Smith Clove Rd (~75 min).",
+          "url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf",
+          "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+        },
+        "transit_end": {
+          "station": "Bear Mountain Inn, Tomkins Cove, NY",
+          "mode": "Intercity Bus",
+          "hub": "Port Authority Bus Terminal (Gate 405)",
+          "details": "Coach USA ShortLine Hudson Bus direct from Bear Mountain Inn back to Port Authority Bus Terminal (~94 min).",
+          "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Bear+Mountain+Inn/data=!4m5!4m4!2m2!6e0!8j1792932066!3e3",
+          "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.122,
+            41.352,
+            520
+          ],
+          [
+            -74.095,
+            41.348,
+            790
+          ],
+          [
+            -74.062,
+            41.339,
+            1150
+          ],
+          [
+            -74.035,
+            41.325,
+            1060
+          ],
+          [
+            -74.019,
+            41.3195,
+            540
+          ],
+          [
+            -74.028,
+            41.302,
+            820
+          ],
+          [
+            -74.006,
+            41.3115,
+            1240
+          ],
+          [
+            -73.9889,
+            41.3128,
+            160
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 1,
+        "name": "Rt 32 & Smith Clove Rd",
+        "distance_mi": 0.0,
+        "elevation_ft": 520,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.122,
+          41.352,
+          520
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 2,
+        "name": "Long Path Trailhead",
+        "distance_mi": 1.8,
+        "elevation_ft": 790,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.095,
+          41.348,
+          790
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 3,
+        "name": "West Point Ridge (LP)",
+        "distance_mi": 4.4,
+        "elevation_ft": 1150,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.062,
+          41.339,
+          1150
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 4,
+        "name": "Torrey Memorial (Long Mtn)",
+        "distance_mi": 7.1,
+        "elevation_ft": 1060,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.035,
+          41.325,
+          1060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 5,
+        "name": "Popolopen Gorge",
+        "distance_mi": 8.9,
+        "elevation_ft": 540,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.019,
+          41.3195,
+          540
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 6,
+        "name": "Anthony Wayne / AT Jct",
+        "distance_mi": 10.6,
+        "elevation_ft": 820,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.028,
+          41.302,
+          820
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 7,
+        "name": "Bear Mtn South Shoulder",
+        "distance_mi": 12.8,
+        "elevation_ft": 1240,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.006,
+          41.3115,
+          1240
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 4,
+        "hike_title": "Torrey Memorial",
+        "waypoint_order": 8,
+        "name": "Bear Mountain Inn",
+        "distance_mi": 14.7,
+        "elevation_ft": 160,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9889,
+          41.3128,
+          160
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 5,
+        "date": "Sat. Oct. 31, 2026",
+        "title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "region": "Harriman State Park, NY",
+        "leader": "Trails Committee Chair (Peter)",
+        "distance_mi": 11.5,
+        "elevation_gain_ft": 2150,
+        "max_elev_ft": 1240,
+        "route_type": "Point-to-Point Trail Work & Traverse",
+        "map_ref": "NY-NJTC Map 119",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Southfields, NY (Rt 17 & Old Orange Tpk)",
+          "mode": "Intercity Bus",
+          "hub": "Port Authority Bus Terminal (Gate 403 / 408)",
+          "details": "Coach USA ShortLine Hudson Bus direct from Port Authority Bus Terminal to Rt 17 & Old Orange Tpk, Southfields (~57\u201364 min).",
+          "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Rt+17+%26+Old+Orange+Tpk/data=!4m5!4m4!2m2!6e0!8j1792868766!3e3",
+          "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+        },
+        "transit_end": {
+          "station": "Tuxedo Station, Tuxedo Park, NY",
+          "mode": "Commuter Rail",
+          "hub": "Penn Station / Secaucus Junction",
+          "details": "NJ Transit Port Jervis Line from Tuxedo Station to Secaucus Junction & NY Penn Station (~74\u201378 min) or Hoboken.",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Tuxedo/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+          "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.1772,
+            41.2519,
+            510
+          ],
+          [
+            -74.162,
+            41.25,
+            740
+          ],
+          [
+            -74.148,
+            41.246,
+            1180
+          ],
+          [
+            -74.132,
+            41.2435,
+            960
+          ],
+          [
+            -74.122,
+            41.2395,
+            1050
+          ],
+          [
+            -74.142,
+            41.224,
+            1240
+          ],
+          [
+            -74.172,
+            41.204,
+            1020
+          ],
+          [
+            -74.1847,
+            41.1942,
+            420
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 1,
+        "name": "Southfields (Rt 17)",
+        "distance_mi": 0.0,
+        "elevation_ft": 510,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1772,
+          41.2519,
+          510
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 2,
+        "name": "Nurian Trailhead",
+        "distance_mi": 1.2,
+        "elevation_ft": 740,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.162,
+          41.25,
+          740
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 3,
+        "name": "Stahahe High Peak",
+        "distance_mi": 2.8,
+        "elevation_ft": 1180,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.148,
+          41.246,
+          1180
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 4,
+        "name": "Valley of Boulders",
+        "distance_mi": 4.5,
+        "elevation_ft": 960,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.132,
+          41.2435,
+          960
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 5,
+        "name": "Black Ash Swamp / White Bar",
+        "distance_mi": 6.1,
+        "elevation_ft": 1050,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.122,
+          41.2395,
+          1050
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 6,
+        "name": "Parker Cabin Mtn (R-D)",
+        "distance_mi": 8.0,
+        "elevation_ft": 1240,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.142,
+          41.224,
+          1240
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 7,
+        "name": "Claudius Smith Den",
+        "distance_mi": 9.8,
+        "elevation_ft": 1020,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.172,
+          41.204,
+          1020
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 5,
+        "hike_title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+        "waypoint_order": 8,
+        "name": "Tuxedo Station",
+        "distance_mi": 11.5,
+        "elevation_ft": 420,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1847,
+          41.1942,
+          420
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 6,
+        "date": "Sat. Nov. 7, 2026",
+        "title": "Hewitt to Wanaque",
+        "region": "Norvin Green State Forest, NJ",
+        "leader": "Erik",
+        "distance_mi": 15.6,
+        "elevation_gain_ft": 3380,
+        "max_elev_ft": 1315,
+        "route_type": "Point-to-Point Highlands Traverse",
+        "map_ref": "NY-NJTC Map 151 (formerly 115)",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Hewitt, NJ (Lakeside Rd at Greenwood Lake Tpke)",
+          "mode": "Intercity Bus",
+          "hub": "Port Authority Bus Terminal (Platform 233_1)",
+          "details": "NJ Transit Bus 197 (heading towards Warwick via Willowbrook) from PABT Platform 233_1 to Lakeside Rd N of Greenwood Lake Tpke (~105 min).",
+          "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Lakeside+Rd+202'+N+of+Greenwood+Lake+Tpke./data=!4m5!4m4!2m2!6e0!8j1792848443!3e3",
+          "agency_url": "https://www.njtransit.com/"
+        },
+        "transit_end": {
+          "station": "Wanaque, NJ (Ringwood Ave at Father Hayes Dr)",
+          "mode": "Intercity Bus",
+          "hub": "Port Authority Bus Terminal (Platform 233_1)",
+          "details": "NJ Transit Bus 197 direct from Ringwood Ave at Father Hayes Dr in Wanaque back to Port Authority Bus Terminal (~74 min, departures every 30\u201360 min).",
+          "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Ringwood+Ave+at+Father+Hayes+Dr/data=!4m5!4m4!2m2!6e0!8j1792848443!3e3",
+          "agency_url": "https://www.njtransit.com/"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.354,
+            41.148,
+            640
+          ],
+          [
+            -74.358,
+            41.132,
+            1120
+          ],
+          [
+            -74.364,
+            41.119,
+            1315
+          ],
+          [
+            -74.359,
+            41.105,
+            1060
+          ],
+          [
+            -74.345,
+            41.092,
+            780
+          ],
+          [
+            -74.3314,
+            41.0764,
+            1145
+          ],
+          [
+            -74.324,
+            41.068,
+            1080
+          ],
+          [
+            -74.316,
+            41.062,
+            620
+          ],
+          [
+            -74.292,
+            41.053,
+            260
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 1,
+        "name": "Hewitt (Lakeside Rd)",
+        "distance_mi": 0.0,
+        "elevation_ft": 640,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.354,
+          41.148,
+          640
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 2,
+        "name": "Long Hill (Tapawingo)",
+        "distance_mi": 2.4,
+        "elevation_ft": 1120,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.358,
+          41.132,
+          1120
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 3,
+        "name": "Overlook Rock",
+        "distance_mi": 4.2,
+        "elevation_ft": 1315,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.364,
+          41.119,
+          1315
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 4,
+        "name": "Manaticut Point",
+        "distance_mi": 6.1,
+        "elevation_ft": 1060,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.359,
+          41.105,
+          1060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 5,
+        "name": "Camp Wyanokie / Macopin",
+        "distance_mi": 8.4,
+        "elevation_ft": 780,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.345,
+          41.092,
+          780
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 6,
+        "name": "Wyanokie High Point",
+        "distance_mi": 10.6,
+        "elevation_ft": 1145,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.3314,
+          41.0764,
+          1145
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 7,
+        "name": "Yoo-Hoo Point & Carris Hill",
+        "distance_mi": 12.3,
+        "elevation_ft": 1080,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.324,
+          41.068,
+          1080
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 8,
+        "name": "Chikahoki Falls",
+        "distance_mi": 13.7,
+        "elevation_ft": 620,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.316,
+          41.062,
+          620
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 6,
+        "hike_title": "Hewitt to Wanaque",
+        "waypoint_order": 9,
+        "name": "Wanaque (Ringwood Ave)",
+        "distance_mi": 15.6,
+        "elevation_ft": 260,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.292,
+          41.053,
+          260
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 7,
+        "date": "Sun. Nov. 15, 2026",
+        "title": "Melzingah Reservoir",
+        "region": "East Hudson Highlands, NY",
+        "leader": "Brian",
+        "distance_mi": 15.5,
+        "elevation_gain_ft": 3850,
+        "max_elev_ft": 1540,
+        "route_type": "Point-to-Point Ridge & Reservoir Traverse",
+        "map_ref": "NY-NJTC Map 102 (East Hudson)",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Beacon Station, Beacon, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North Hudson Line direct from Grand Central Terminal to Beacon (~89\u201397 min, departures every 20\u201330 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Beacon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        },
+        "transit_end": {
+          "station": "Cold Spring Station, Cold Spring, NY",
+          "mode": "Commuter Rail",
+          "hub": "Grand Central Terminal",
+          "details": "MTA Metro-North Hudson Line direct from Cold Spring back to Grand Central Terminal (~78\u201385 min, departures every 20\u201330 min).",
+          "url": "https://www.google.com/maps/dir/Grand+Central/Cold+Spring/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+          "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.9844,
+            41.5058,
+            15
+          ],
+          [
+            -73.959,
+            41.493,
+            260
+          ],
+          [
+            -73.9445,
+            41.4815,
+            1540
+          ],
+          [
+            -73.949,
+            41.472,
+            1360
+          ],
+          [
+            -73.963,
+            41.468,
+            680
+          ],
+          [
+            -73.955,
+            41.461,
+            1220
+          ],
+          [
+            -73.969,
+            41.448,
+            1260
+          ],
+          [
+            -73.968,
+            41.436,
+            340
+          ],
+          [
+            -73.9581,
+            41.4153,
+            20
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 1,
+        "name": "Beacon Station",
+        "distance_mi": 0.0,
+        "elevation_ft": 15,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9844,
+          41.5058,
+          15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 2,
+        "name": "Casino Trailhead",
+        "distance_mi": 1.9,
+        "elevation_ft": 260,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.959,
+          41.493,
+          260
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 3,
+        "name": "Mt Beacon Fire Tower",
+        "distance_mi": 3.8,
+        "elevation_ft": 1540,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9445,
+          41.4815,
+          1540
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 4,
+        "name": "Scofield Ridge (WMT)",
+        "distance_mi": 5.4,
+        "elevation_ft": 1360,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.949,
+          41.472,
+          1360
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 5,
+        "name": "Melzingah Reservoir",
+        "distance_mi": 7.6,
+        "elevation_ft": 680,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.963,
+          41.468,
+          680
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 6,
+        "name": "Notch / WMT Climb",
+        "distance_mi": 9.8,
+        "elevation_ft": 1220,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.955,
+          41.461,
+          1220
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 7,
+        "name": "Breakneck Ridge Crest",
+        "distance_mi": 12.1,
+        "elevation_ft": 1260,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.969,
+          41.448,
+          1260
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 8,
+        "name": "Cornish Estate Ruins",
+        "distance_mi": 13.8,
+        "elevation_ft": 340,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.968,
+          41.436,
+          340
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 7,
+        "hike_title": "Melzingah Reservoir",
+        "waypoint_order": 9,
+        "name": "Cold Spring Station",
+        "distance_mi": 15.5,
+        "elevation_ft": 20,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.9581,
+          41.4153,
+          20
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 8,
+        "date": "Sun. Nov. 22, 2026",
+        "title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "region": "North Shore, Long Island, NY",
+        "leader": "Peter",
+        "distance_mi": 15.0,
+        "elevation_gain_ft": 1350,
+        "max_elev_ft": 210,
+        "route_type": "Circular Park, Beach & Bluff Loop",
+        "map_ref": "LI Greenbelt Trail / Sunken Meadow SP",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Kings Park LIRR Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Penn Station / Grand Central Madison",
+          "details": "MTA Long Island Rail Road (Port Jefferson Branch via Huntington transfer) from Penn Station to Kings Park (~95\u201399 min; arrives for 10:10 AM meet).",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Kings+Park/data=!4m5!4m4!2m2!6e0!8j1792850220!3e3",
+          "agency_url": "https://www.mta.info/agency/long-island-rail-road"
+        },
+        "transit_end": {
+          "station": "Kings Park LIRR Station, NY",
+          "mode": "Commuter Rail",
+          "hub": "Penn Station / Grand Central Madison",
+          "details": "MTA Long Island Rail Road (Port Jefferson Branch via Huntington transfer) from Kings Park back to Penn Station (~95\u201399 min).",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Kings+Park/data=!4m5!4m4!2m2!6e0!8j1792856100!3e3",
+          "agency_url": "https://www.mta.info/agency/long-island-rail-road"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -73.2564,
+            40.8836,
+            175
+          ],
+          [
+            -73.255,
+            40.898,
+            60
+          ],
+          [
+            -73.258,
+            40.906,
+            15
+          ],
+          [
+            -73.274,
+            40.9095,
+            25
+          ],
+          [
+            -73.252,
+            40.9105,
+            10
+          ],
+          [
+            -73.229,
+            40.908,
+            5
+          ],
+          [
+            -73.235,
+            40.9045,
+            210
+          ],
+          [
+            -73.249,
+            40.901,
+            195
+          ],
+          [
+            -73.2564,
+            40.8836,
+            175
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 1,
+        "name": "Kings Park LIRR",
+        "distance_mi": 0.0,
+        "elevation_ft": 175,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2564,
+          40.8836,
+          175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 2,
+        "name": "Southern Park Entry",
+        "distance_mi": 1.3,
+        "elevation_ft": 60,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.255,
+          40.898,
+          60
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 3,
+        "name": "Sunken Meadow Creek",
+        "distance_mi": 2.4,
+        "elevation_ft": 15,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.258,
+          40.906,
+          15
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 4,
+        "name": "Wetland Trail West End",
+        "distance_mi": 4.2,
+        "elevation_ft": 25,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.274,
+          40.9095,
+          25
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 5,
+        "name": "Sunken Meadow Boardwalk",
+        "distance_mi": 6.2,
+        "elevation_ft": 10,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.252,
+          40.9105,
+          10
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 6,
+        "name": "Nissequogue River Mouth",
+        "distance_mi": 8.0,
+        "elevation_ft": 5,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.229,
+          40.908,
+          5
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 7,
+        "name": "Eastern Glacial Bluffs",
+        "distance_mi": 10.1,
+        "elevation_ft": 210,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.235,
+          40.9045,
+          210
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 8,
+        "name": "Cardiac Hill / Greenbelt",
+        "distance_mi": 12.4,
+        "elevation_ft": 195,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.249,
+          40.901,
+          195
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 8,
+        "hike_title": "Long Island Sunken Meadow State Park Exploration: Circular",
+        "waypoint_order": 9,
+        "name": "Kings Park LIRR",
+        "distance_mi": 15.0,
+        "elevation_ft": 175,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.2564,
+          40.8836,
+          175
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": 9,
+        "date": "Sun. Nov. 29, 2026",
+        "title": "Tuxedo to Suffern, The Long Way",
+        "region": "Harriman State Park, NY",
+        "leader": "Hugues",
+        "distance_mi": 17.8,
+        "elevation_gain_ft": 3950,
+        "max_elev_ft": 1290,
+        "route_type": "Point-to-Point Multi-Ridge Endurance Traverse",
+        "map_ref": "NY-NJTC Map 118",
+        "source_url": "https://www.nyramblers.org/schedule/",
+        "attribution": "\u00a9 The New York Ramblers, Inc. | Trail data: NY-NJ Trail Conference",
+        "transit_start": {
+          "station": "Tuxedo Station, Tuxedo Park, NY",
+          "mode": "Commuter Rail",
+          "hub": "Penn Station / Secaucus Junction",
+          "details": "NJ Transit Port Jervis Line from NY Penn Station (transfer at Secaucus Junction) to Tuxedo Station (~74\u201378 min).",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Tuxedo/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+          "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+        },
+        "transit_end": {
+          "station": "Suffern Station, Suffern, NY",
+          "mode": "Commuter Rail",
+          "hub": "Penn Station / Secaucus Junction",
+          "details": "NJ Transit Main/Bergen/Port Jervis Line from Suffern Station back to Secaucus Junction & NY Penn Station (~60\u201364 min).",
+          "url": "https://www.google.com/maps/dir/Penn+Station/Suffern/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+          "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+        }
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            -74.1847,
+            41.1942,
+            420
+          ],
+          [
+            -74.165,
+            41.208,
+            1060
+          ],
+          [
+            -74.142,
+            41.229,
+            1190
+          ],
+          [
+            -74.131,
+            41.216,
+            1140
+          ],
+          [
+            -74.135,
+            41.198,
+            980
+          ],
+          [
+            -74.144,
+            41.178,
+            1290
+          ],
+          [
+            -74.142,
+            41.158,
+            1020
+          ],
+          [
+            -74.146,
+            41.139,
+            520
+          ],
+          [
+            -74.1578,
+            41.1144,
+            300
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 1,
+        "name": "Tuxedo Station",
+        "distance_mi": 0.0,
+        "elevation_ft": 420,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1847,
+          41.1942,
+          420
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 2,
+        "name": "R-D / Triangle Trail",
+        "distance_mi": 2.2,
+        "elevation_ft": 1060,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.165,
+          41.208,
+          1060
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 3,
+        "name": "Rte 106 & Nurian Loop",
+        "distance_mi": 4.6,
+        "elevation_ft": 1190,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.142,
+          41.229,
+          1190
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 4,
+        "name": "White Cross & Victory",
+        "distance_mi": 6.8,
+        "elevation_ft": 1140,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.131,
+          41.216,
+          1140
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 5,
+        "name": "Tuxedo-Mt Ivy Jct",
+        "distance_mi": 9.1,
+        "elevation_ft": 980,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.135,
+          41.198,
+          980
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 6,
+        "name": "HTS & Seven Hills",
+        "distance_mi": 11.4,
+        "elevation_ft": 1290,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.144,
+          41.178,
+          1290
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 7,
+        "name": "Kakiat Trail Ridge",
+        "distance_mi": 13.8,
+        "elevation_ft": 1020,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.142,
+          41.158,
+          1020
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 8,
+        "name": "Torne Valley / SBM Trail",
+        "distance_mi": 15.8,
+        "elevation_ft": 520,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.146,
+          41.139,
+          520
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "hike_id": 9,
+        "hike_title": "Tuxedo to Suffern, The Long Way",
+        "waypoint_order": 9,
+        "name": "Suffern Station",
+        "distance_mi": 17.8,
+        "elevation_ft": 300,
+        "attribution": "\u00a9 The New York Ramblers, Inc."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1578,
+          41.1144,
+          300
+        ]
+      }
+    }
+  ]
+}

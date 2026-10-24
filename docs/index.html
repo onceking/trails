@@ -1,0 +1,1760 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NY Ramblers Fall 2026 Trail Maps, Elevation Profiles &amp; Public Transit Guide</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: #F8FAFC;
+      color: #0F172A;
+    }
+    .leaflet-container {
+      font-family: 'Inter', sans-serif;
+      z-index: 10;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Top Header Banner -->
+  <header class="bg-emerald-950 text-white border-b border-emerald-800 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-400/30">
+            Fall 2026 Schedule
+          </span>
+          <a href="https://www.nyramblers.org/schedule/" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-300 hover:text-white underline underline-offset-2 transition">
+            nyramblers.org/schedule ↗
+          </a>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight mt-1">
+          New York Ramblers — Interactive Trail Maps, Elevation &amp; Transit Explorer
+        </h1>
+        <p class="text-xs sm:text-sm text-emerald-200/90 mt-0.5">
+          All 9 scheduled hikes (Oct–Nov 2026) with interactive GPS waypoint maps, elevation gain profiles, and NYC public transit connections.
+        </p>
+      </div>
+      <div class="flex flex-wrap items-center gap-2">
+        <button id="btnViewExplorer" type="button" class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm">
+          Interactive Route Explorer
+        </button>
+        <button id="btnViewTable" type="button" class="px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-900/80 text-emerald-100 hover:bg-emerald-800 border border-emerald-700 transition">
+          All Hikes Comparison &amp; Transit Table
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Summary KPI Bar -->
+  <section class="bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center sm:text-left">
+      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+        <div class="text-xs font-medium text-slate-500">Scheduled Hikes</div>
+        <div class="text-lg font-bold text-slate-900">9 Routes <span class="text-xs font-normal text-emerald-700">(Oct 4 – Nov 29)</span></div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+        <div class="text-xs font-medium text-slate-500">Total Schedule Mileage</div>
+        <div class="text-lg font-bold text-slate-900">134.7 Miles <span class="text-xs font-normal text-slate-500">(Avg 15.0 mi)</span></div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+        <div class="text-xs font-medium text-slate-500">Cumulative Elevation Gain</div>
+        <div class="text-lg font-bold text-slate-900">+23,955 ft <span class="text-xs font-normal text-slate-500">(Max 1,540 ft)</span></div>
+      </div>
+      <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200/80">
+        <div class="text-xs font-medium text-slate-500">NYC Transit Hubs</div>
+        <div class="text-lg font-bold text-slate-900">GCT, Penn &amp; PABT <span class="text-xs font-normal text-emerald-700">(100% Transit)</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Container -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+    <!-- VIEW 1: INTERACTIVE ROUTE EXPLORER -->
+    <div id="explorerView" class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+      <!-- Left Sidebar: Hike Filter & Selector List -->
+      <aside class="lg:col-span-4 flex flex-col bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-slate-200 bg-slate-50/70 space-y-3">
+          <div class="flex items-center justify-between">
+            <h2 class="text-sm font-bold text-slate-800 uppercase tracking-wider">Select Scheduled Hike</h2>
+            <span id="hikeCountBadge" class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800">9 Hikes</span>
+          </div>
+          <div>
+            <label for="searchFilter" class="sr-only">Search hikes or trails</label>
+            <input id="searchFilter" type="text" placeholder="Filter by trail, station, leader, or park..." class="w-full px-3 py-2 text-xs sm:text-sm rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent" />
+          </div>
+          <div class="flex flex-wrap gap-1.5">
+            <button type="button" data-filter="all" class="filter-chip px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-800 text-white">All (9)</button>
+            <button type="button" data-filter="train" class="filter-chip px-2.5 py-1 rounded-md text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Train Access</button>
+            <button type="button" data-filter="bus" class="filter-chip px-2.5 py-1 rounded-md text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Bus Access</button>
+            <button type="button" data-filter="circular" class="filter-chip px-2.5 py-1 rounded-md text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300">Circular</button>
+          </div>
+        </div>
+
+        <div id="hikeListContainer" class="divide-y divide-slate-200 overflow-y-auto custom-scrollbar max-h-[580px]">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </aside>
+
+      <!-- Right Detail Panel: Active Hike Map, Elevation Chart, Waypoints & Transit -->
+      <section class="lg:col-span-8 space-y-6">
+
+        <!-- Active Hike Header Card -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 pb-4 border-b border-slate-100">
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="detailDate" class="px-2.5 py-0.5 rounded-md text-xs font-bold bg-emerald-100 text-emerald-900"></span>
+                <span id="detailRouteType" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-amber-100 text-amber-900"></span>
+                <a id="detailMapLink" href="#" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-emerald-700 hover:text-emerald-900 underline"></a>
+              </div>
+              <h2 id="detailTitle" class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-1.5"></h2>
+              <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+                Region: <a id="detailRegionLink" href="#" target="_blank" rel="noopener noreferrer" class="font-semibold text-emerald-800 hover:underline"></a>
+                &bull; Leader: <span id="detailLeader" class="font-semibold text-slate-800"></span>
+                &bull; Pace: <span id="detailPace" class="font-medium text-slate-700"></span>
+              </p>
+            </div>
+            <div class="flex sm:flex-col items-end justify-between gap-1 shrink-0">
+              <div class="flex items-center gap-1.5">
+                <button id="btnPrevHike" type="button" class="px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition">&larr; Prev</button>
+                <button id="btnNextHike" type="button" class="px-2.5 py-1.5 rounded-lg border border-slate-300 text-xs font-semibold text-slate-700 hover:bg-slate-100 transition">Next &rarr;</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Key Metrics Strip -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 my-4">
+            <div class="p-3 rounded-lg bg-emerald-50/70 border border-emerald-200/60">
+              <div class="text-xs text-emerald-800 font-medium">Total Distance</div>
+              <div id="detailDistance" class="text-lg font-extrabold text-emerald-950"></div>
+            </div>
+            <div class="p-3 rounded-lg bg-amber-50/70 border border-amber-200/60">
+              <div class="text-xs text-amber-900 font-medium">Elevation Gain</div>
+              <div id="detailElevGain" class="text-lg font-extrabold text-amber-950"></div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <div class="text-xs text-slate-600 font-medium">Elevation Range</div>
+              <div id="detailElevRange" class="text-lg font-bold text-slate-900"></div>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <div class="text-xs text-slate-600 font-medium">Est. Duration</div>
+              <div id="detailDuration" class="text-lg font-bold text-slate-900"></div>
+            </div>
+          </div>
+
+          <!-- Official Route Description -->
+          <p id="detailSummary" class="text-xs sm:text-sm text-slate-700 leading-relaxed bg-slate-50 p-3.5 rounded-lg border border-slate-200/80"></p>
+        </div>
+
+        <!-- Side-by-Side or Stacked Interactive Trail Map & Elevation Chart -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <!-- Interactive Trail Map Card -->
+          <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div class="px-4 py-3 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Interactive Trail Route Map</h3>
+                <p class="text-xs text-slate-500">Click any marker or waypoint below to inspect elevation</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button id="btnToggleTopo" type="button" class="px-2.5 py-1 rounded text-xs font-semibold bg-emerald-800 text-white hover:bg-emerald-700 transition">
+                  Toggle Topo / Street
+                </button>
+                <button id="btnResetMap" type="button" class="px-2.5 py-1 rounded text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300 transition">
+                  Fit Route
+                </button>
+              </div>
+            </div>
+            <div class="relative h-80 w-full bg-slate-100">
+              <div id="trailMap" class="h-full w-full"></div>
+              <!-- Fallback SVG overlay if offline / tiles blocked -->
+              <svg id="svgMapFallback" class="hidden absolute inset-0 w-full h-full bg-emerald-50/40 pointer-events-none" viewBox="0 0 400 300"></svg>
+            </div>
+            <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 flex items-center justify-between text-xs text-slate-600">
+              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-green-600 inline-block"></span> Trailhead Start</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-amber-500 inline-block"></span> Key Waypoint</span>
+              <span class="inline-flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-red-600 inline-block"></span> Finish Station</span>
+            </div>
+          </div>
+
+          <!-- Interactive Elevation Profile Chart Card -->
+          <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden flex flex-col">
+            <div class="px-4 py-3 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-slate-900">Elevation Profile &amp; Grade</h3>
+                <p class="text-xs text-slate-500">Hover or tap points to highlight location on trail map</p>
+              </div>
+              <span id="selectedWaypointBadge" class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-100 text-amber-900">All Waypoints</span>
+            </div>
+            <div class="p-4 flex-1 flex flex-col justify-center">
+              <div class="relative h-72 w-full">
+                <canvas id="elevationChart"></canvas>
+              </div>
+            </div>
+            <div class="px-4 py-2.5 bg-slate-50 border-t border-slate-200 text-xs text-slate-600 flex items-center justify-between">
+              <span id="chartClimbSummary"></span>
+              <span class="text-slate-500">Distances &amp; elevations calibrated to NY-NJTC trail data</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Public Transit Options to Start and End of Trail -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+          <div class="px-5 py-3.5 border-b border-slate-200 bg-emerald-950 text-white flex items-center justify-between">
+            <div>
+              <h3 class="text-sm font-bold uppercase tracking-wider">NYC Public Transit Connections (Start &amp; Finish)</h3>
+              <p class="text-xs text-emerald-200">Verified commuter rail and intercity bus options from Manhattan hubs</p>
+            </div>
+            <a href="https://www.mta.info/schedules" target="_blank" rel="noopener noreferrer" class="text-xs font-medium text-amber-300 hover:underline">
+              MTA / NJT Timetables ↗
+            </a>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200">
+            <!-- Outbound Transit to Start -->
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-bold bg-green-100 text-green-900">
+                  &#9654; Outbound to Trail Start
+                </span>
+                <span id="transitStartMode" class="text-xs font-semibold text-slate-500"></span>
+              </div>
+              <div id="transitStartStation" class="text-base font-bold text-slate-900"></div>
+              <div class="text-xs font-medium text-slate-500">Departure Hub: <span id="transitStartHub" class="text-slate-800 font-semibold"></span></div>
+              <p id="transitStartDetails" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+              <div class="pt-1 flex flex-wrap items-center gap-3">
+                <a id="transitStartUrl" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
+                  Google Maps Transit Route ↗
+                </a>
+                <a id="transitStartAgency" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-medium text-slate-600 hover:text-slate-900 underline">
+                  Official Carrier Schedule ↗
+                </a>
+              </div>
+            </div>
+
+            <!-- Return Transit from Finish -->
+            <div class="p-5 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md text-xs font-bold bg-red-100 text-red-900">
+                  &#9632; Return from Trail Finish
+                </span>
+                <span id="transitEndMode" class="text-xs font-semibold text-slate-500"></span>
+              </div>
+              <div id="transitEndStation" class="text-base font-bold text-slate-900"></div>
+              <div class="text-xs font-medium text-slate-500">Return Hub: <span id="transitEndHub" class="text-slate-800 font-semibold"></span></div>
+              <p id="transitEndDetails" class="text-xs sm:text-sm text-slate-700 leading-relaxed"></p>
+              <div class="pt-1 flex flex-wrap items-center gap-3">
+                <a id="transitEndUrl" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
+                  Google Maps Transit Route ↗
+                </a>
+                <a id="transitEndAgency" href="#" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-medium text-slate-600 hover:text-slate-900 underline">
+                  Official Carrier Schedule ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Turn-by-Turn Trail Sequence & Interactive Waypoint Table -->
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+          <div class="md:col-span-5 bg-white rounded-xl border border-slate-200 shadow-sm p-5">
+            <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider mb-3">Trail Sequence &amp; Blazes</h3>
+            <ol id="trailSequenceList" class="space-y-2.5 text-xs sm:text-sm text-slate-700 list-decimal list-inside"></ol>
+          </div>
+          <div class="md:col-span-7 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="px-5 py-3.5 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
+              <h3 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Waypoint Elevation Log (Click Row to Focus)</h3>
+              <span class="text-xs text-slate-500">Mile-by-mile checkpoints</span>
+            </div>
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="border-b border-slate-200 bg-slate-50/80 text-slate-600">
+                    <th class="py-2.5 px-3 font-semibold">#</th>
+                    <th class="py-2.5 px-3 font-semibold">Waypoint / Landmark</th>
+                    <th class="py-2.5 px-3 font-semibold text-right">Mile</th>
+                    <th class="py-2.5 px-3 font-semibold text-right">Elevation</th>
+                    <th class="py-2.5 px-3 font-semibold text-right">Coords</th>
+                  </tr>
+                </thead>
+                <tbody id="waypointTableBody" class="divide-y divide-slate-100"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- VIEW 2: ALL HIKES COMPARISON & TRANSIT MASTER TABLE -->
+    <div id="tableView" class="hidden space-y-6">
+      <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div>
+            <h2 class="text-lg font-bold text-slate-900">Complete Fall 2026 Schedule &amp; Transit Comparison</h2>
+            <p class="text-xs sm:text-sm text-slate-600">Click any row or "Inspect Map &amp; Chart" button to open the interactive route explorer for that hike.</p>
+          </div>
+          <button id="btnBackToExplorer" type="button" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-emerald-800 text-white hover:bg-emerald-700 transition self-start sm:self-auto">
+            &larr; Return to Route Explorer
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm">
+            <thead>
+              <tr class="bg-slate-100 border-b border-slate-200 text-slate-700">
+                <th class="py-3 px-4 font-bold">Date</th>
+                <th class="py-3 px-4 font-bold">Hike Name &amp; Park</th>
+                <th class="py-3 px-4 font-bold text-right">Distance</th>
+                <th class="py-3 px-4 font-bold text-right">Elev. Gain</th>
+                <th class="py-3 px-4 font-bold">Start Transit (From NYC)</th>
+                <th class="py-3 px-4 font-bold">End Transit (To NYC)</th>
+                <th class="py-3 px-4 font-bold text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTableBody" class="divide-y divide-slate-200"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="bg-white border-t border-slate-200 mt-10 py-4">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
+      <div>
+        Source: <a href="https://www.nyramblers.org/schedule/" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:underline font-medium">New York Ramblers Hiking Club Official Schedule</a> &bull; Maps: <a href="https://www.nynjtc.org/" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:underline">NY-NJ Trail Conference</a>
+      </div>
+      <div>
+        Always confirm Sunday/Saturday morning transit departures and contact the hike leader in advance.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const HIKES = [
+  {
+    "id": 1,
+    "date": "Sun. Oct. 4, 2026",
+    "title": "Fourteen Hills: A Circular",
+    "region": "Harriman State Park, NY",
+    "park_url": "https://www.palisadesparks.org/harriman",
+    "leader": "Hugues",
+    "pace": "Fast pace (Strenuous)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 15.2,
+    "elevation_gain_ft": 3450,
+    "max_elev_ft": 1290,
+    "min_elev_ft": 350,
+    "route_type": "Out-and-Back / Circular",
+    "map_ref": "NY-NJTC Map 118",
+    "map_url": "https://www.nynjtc.org/",
+    "summary": "From Sloatsburg station, use local streets to Pine Meadow Trail, thence to the Seven Hills Trail, which hike in its entirety to Lake Sebago. Then retrace! (Possible extensions depending on conditions.)",
+    "trail_sequence": [
+      "Sloatsburg Station & Local Streets (Eagle Valley Rd)",
+      "Pine Meadow Trail (Red)",
+      "Seven Hills Trail (Blue) \u2014 Ramapo Torne, Russian Bear, Torne View, West Mountain Peaks",
+      "Diamond Mountain (1,290 ft) to Lake Sebago Boat Launch",
+      "Retrace Seven Hills Trail & Pine Meadow Trail to Sloatsburg"
+    ],
+    "transit_start": {
+      "station": "Sloatsburg, NY (Rt 17 & Mill St / Rail Station)",
+      "mode": "Bus / Rail",
+      "hub": "Port Authority Bus Terminal (Gate 408) or Penn Station",
+      "details": "Coach USA ShortLine Hudson Bus from PABT Gate 408 to Rt 17 & Mill St, Sloatsburg (~61 min; schedule notes bus substitution), or NJ Transit Port Jervis Line via Secaucus Junction (~79 min).",
+      "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Rt+17+%26+Mill+St+-+Sloatsburg/data=!4m5!4m4!2m2!6e0!8j1792868766!3e3",
+      "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+    },
+    "transit_end": {
+      "station": "Sloatsburg, NY (Rt 17 & Mill St / Rail Station)",
+      "mode": "Bus / Rail",
+      "hub": "Port Authority Bus Terminal or Penn Station",
+      "details": "Return via Coach USA ShortLine Hudson Bus from Rt 17 & Mill St to PABT (~61 min) or NJ Transit Port Jervis Line from Sloatsburg Station to Secaucus / Penn Station (~79 min).",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Sloatsburg/data=!4m5!4m4!2m2!6e0!8j1792854245!3e3",
+      "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+    },
+    "waypoints": [
+      {
+        "name": "Sloatsburg Station",
+        "lat": 41.1565,
+        "lon": -74.1912,
+        "dist": 0.0,
+        "elev": 350
+      },
+      {
+        "name": "Pine Meadow Trailhead",
+        "lat": 41.1585,
+        "lon": -74.178,
+        "dist": 1.1,
+        "elev": 460
+      },
+      {
+        "name": "Seven Hills Jct",
+        "lat": 41.1632,
+        "lon": -74.1655,
+        "dist": 2.2,
+        "elev": 680
+      },
+      {
+        "name": "Ramapo Torne",
+        "lat": 41.1601,
+        "lon": -74.1585,
+        "dist": 3.1,
+        "elev": 1120
+      },
+      {
+        "name": "Russian Bear & Torne View",
+        "lat": 41.1685,
+        "lon": -74.151,
+        "dist": 4.3,
+        "elev": 1080
+      },
+      {
+        "name": "HTS Trail Crossing",
+        "lat": 41.174,
+        "lon": -74.145,
+        "dist": 5.4,
+        "elev": 820
+      },
+      {
+        "name": "Diamond Mountain",
+        "lat": 41.1865,
+        "lon": -74.136,
+        "dist": 6.6,
+        "elev": 1290
+      },
+      {
+        "name": "Lake Sebago Turnaround",
+        "lat": 41.192,
+        "lon": -74.1325,
+        "dist": 7.6,
+        "elev": 785
+      },
+      {
+        "name": "Diamond Mtn (Return)",
+        "lat": 41.1865,
+        "lon": -74.136,
+        "dist": 8.6,
+        "elev": 1290
+      },
+      {
+        "name": "Torne View (Return)",
+        "lat": 41.1685,
+        "lon": -74.151,
+        "dist": 10.9,
+        "elev": 1080
+      },
+      {
+        "name": "Ramapo Torne (Return)",
+        "lat": 41.1601,
+        "lon": -74.1585,
+        "dist": 12.1,
+        "elev": 1120
+      },
+      {
+        "name": "Pine Meadow Tr (Return)",
+        "lat": 41.1585,
+        "lon": -74.178,
+        "dist": 14.1,
+        "elev": 460
+      },
+      {
+        "name": "Sloatsburg Station",
+        "lat": 41.1565,
+        "lon": -74.1912,
+        "dist": 15.2,
+        "elev": 350
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "date": "Sun. Oct. 11, 2026",
+    "title": "Salt Hill State Forest: A Circular",
+    "region": "Westchester County, NY",
+    "park_url": "https://scenesfromthetrail.com/2020/06/07/salt-hill-state-forest/",
+    "leader": "Chris",
+    "pace": "Brisk pace",
+    "duration": "7\u20138 hours",
+    "distance_mi": 16.4,
+    "elevation_gain_ft": 2150,
+    "max_elev_ft": 700,
+    "min_elev_ft": 15,
+    "route_type": "Circular Loop",
+    "map_ref": "Westchester Trails / Salt Hill SF",
+    "map_url": "https://dec.ny.gov/places/montrose-point-state-forest",
+    "summary": "From Croton-Harmon station follow Croton River Walk north to Brook Street. Climb to Upper Village Loop to Kaplan's Pond, Fox Road to Lytle Arboretum, Highland Trail to viewpoint, powerline to Colabaugh Pond Rd, Briarcliff-Peekskill Trailway to Valeria trails, and enter Salt Hill SF. Follow Leander's Way to former Nelson Mtn. fire tower; descend Fire Tower Trail to Rte. 129, cross Croton Dam, and return via Old Croton Aqueduct.",
+    "trail_sequence": [
+      "Croton-Harmon Station to Croton River Walk & Brook St",
+      "Upper Village Loop, Kaplan's Pond & Jane E. Lytle Arboretum",
+      "Highland Trail Viewpoint & Briarcliff-Peekskill Trailway (Valeria)",
+      "Salt Hill State Forest \u2014 Leander's Way to Nelson Mtn Fire Tower Site (699 ft)",
+      "Fire Tower Trail to Rte. 129, New Croton Dam & Old Croton Aqueduct"
+    ],
+    "transit_start": {
+      "station": "Croton-Harmon Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North Hudson Line direct from Grand Central Terminal to Croton-Harmon (~49\u201354 min, departures every 18\u201330 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Croton-Harmon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "transit_end": {
+      "station": "Croton-Harmon Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North Hudson Line direct from Croton-Harmon back to Grand Central Terminal (~50 min, departures every 20\u201330 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Croton-Harmon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "waypoints": [
+      {
+        "name": "Croton-Harmon Station",
+        "lat": 41.1897,
+        "lon": -73.8825,
+        "dist": 0.0,
+        "elev": 15
+      },
+      {
+        "name": "Croton River Walk",
+        "lat": 41.201,
+        "lon": -73.881,
+        "dist": 1.3,
+        "elev": 60
+      },
+      {
+        "name": "Kaplan's Pond",
+        "lat": 41.213,
+        "lon": -73.876,
+        "dist": 2.8,
+        "elev": 260
+      },
+      {
+        "name": "Lytle Arboretum",
+        "lat": 41.2215,
+        "lon": -73.8695,
+        "dist": 4.1,
+        "elev": 380
+      },
+      {
+        "name": "Highland Trail Viewpoint",
+        "lat": 41.231,
+        "lon": -73.874,
+        "dist": 5.5,
+        "elev": 520
+      },
+      {
+        "name": "Valeria / BP Trailway",
+        "lat": 41.242,
+        "lon": -73.865,
+        "dist": 7.4,
+        "elev": 440
+      },
+      {
+        "name": "Salt Hill SF (Leander's Way)",
+        "lat": 41.2485,
+        "lon": -73.849,
+        "dist": 9.2,
+        "elev": 560
+      },
+      {
+        "name": "Nelson Mtn Tower Site",
+        "lat": 41.251,
+        "lon": -73.842,
+        "dist": 10.3,
+        "elev": 699
+      },
+      {
+        "name": "Rte 129 Descent",
+        "lat": 41.238,
+        "lon": -73.845,
+        "dist": 11.8,
+        "elev": 240
+      },
+      {
+        "name": "New Croton Dam",
+        "lat": 41.2265,
+        "lon": -73.856,
+        "dist": 13.2,
+        "elev": 210
+      },
+      {
+        "name": "Old Croton Aqueduct",
+        "lat": 41.209,
+        "lon": -73.872,
+        "dist": 14.9,
+        "elev": 140
+      },
+      {
+        "name": "Croton-Harmon Station",
+        "lat": 41.1897,
+        "lon": -73.8825,
+        "dist": 16.4,
+        "elev": 15
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "date": "Sat. Oct. 17, 2026",
+    "title": "Rye to Mamaroneck Along the Sound",
+    "region": "Westchester Sound Shore, NY",
+    "park_url": "https://parks.westchestercountyny.gov/marshlands-conservancy",
+    "leader": "Ingrid (substituting for Zee)",
+    "pace": "Moderate pace",
+    "duration": "7\u20138 hours",
+    "distance_mi": 13.0,
+    "elevation_gain_ft": 420,
+    "max_elev_ft": 85,
+    "min_elev_ft": 5,
+    "route_type": "Point-to-Point Coastal Walk",
+    "map_ref": "Westchester County Parks Coastal Sanctuaries",
+    "map_url": "https://parks.westchestercountyny.gov/read-wildlifesanctuary",
+    "summary": "Saturday hike at a moderate pace. From Rye station, hike south to Rye Nature Preserve, then to Long Island Sound. Continue along the shore through Edith Read Preserve, Playland Beach, Oakland Beach, Rye Town Park, Marshlands Conservancy and Otter Creek Preserve to Mamaroneck.",
+    "trail_sequence": [
+      "Rye Metro-North Station to Rye Nature Center",
+      "Edith G. Read Wildlife Sanctuary & Playland Lake",
+      "Playland Beach, Oakland Beach & Rye Town Park",
+      "Marshlands Conservancy Forest & Salt Marsh Trails",
+      "Otter Creek Preserve to Mamaroneck Station"
+    ],
+    "transit_start": {
+      "station": "Rye Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North New Haven Line direct from Grand Central Terminal (towards Stamford) to Rye (~49 min, departures every 30 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Rye/data=!4m5!4m4!2m2!6e0!8j1792848960!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "transit_end": {
+      "station": "Mamaroneck Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North New Haven Line direct from Mamaroneck back to Grand Central Terminal (~42 min, departures every 30 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Mamaroneck/data=!4m5!4m4!2m2!6e0!8j1792848960!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "waypoints": [
+      {
+        "name": "Rye Station",
+        "lat": 40.9856,
+        "lon": -73.6836,
+        "dist": 0.0,
+        "elev": 65
+      },
+      {
+        "name": "Rye Nature Center",
+        "lat": 40.974,
+        "lon": -73.694,
+        "dist": 1.4,
+        "elev": 85
+      },
+      {
+        "name": "Edith Read Sanctuary",
+        "lat": 40.968,
+        "lon": -73.666,
+        "dist": 4.2,
+        "elev": 20
+      },
+      {
+        "name": "Playland Beach",
+        "lat": 40.964,
+        "lon": -73.6725,
+        "dist": 5.5,
+        "elev": 10
+      },
+      {
+        "name": "Rye Town Park & Oakland Beach",
+        "lat": 40.9605,
+        "lon": -73.681,
+        "dist": 6.8,
+        "elev": 25
+      },
+      {
+        "name": "Marshlands Conservancy",
+        "lat": 40.952,
+        "lon": -73.7005,
+        "dist": 9.3,
+        "elev": 45
+      },
+      {
+        "name": "Otter Creek Preserve",
+        "lat": 40.9415,
+        "lon": -73.7195,
+        "dist": 11.4,
+        "elev": 15
+      },
+      {
+        "name": "Mamaroneck Station",
+        "lat": 40.9547,
+        "lon": -73.7361,
+        "dist": 13.0,
+        "elev": 50
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "date": "Sun. Oct. 25, 2026",
+    "title": "Torrey Memorial",
+    "region": "Bear Mountain State Park, NY",
+    "park_url": "https://www.palisadesparks.org/bear-mountain",
+    "leader": "Leah",
+    "pace": "Brisk pace",
+    "duration": "7\u20138 hours",
+    "distance_mi": 14.7,
+    "elevation_gain_ft": 3255,
+    "max_elev_ft": 1280,
+    "min_elev_ft": 160,
+    "route_type": "Point-to-Point Ridge & Gorge Traverse",
+    "map_ref": "NY-NJTC Map 119",
+    "map_url": "https://www.nynjtc.org/",
+    "summary": "Annual hike honoring Trail Conference visionary Raymond Torrey (1880\u20131938). From Rt 32 bus stop, walk east on Smith Clove Rd to seasonal Long Path through West Point property. Hike Long Path to Torrey Memorial on Long Mountain, descend to Popolopen Gorge Trail, then Anthony Wayne to Appalachian Trail, following AT over Bear Mountain to Bear Mountain Inn.",
+    "trail_sequence": [
+      "Route 32 & Smith Clove Rd (Highland Mills) to West Point Seasonal Long Path",
+      "Long Path (Aqua) over Long Mountain to Torrey Memorial (1,060 ft)",
+      "Descent into Popolopen Gorge Trail (Red)",
+      "Anthony Wayne Recreation Area to Appalachian Trail (White)",
+      "Bear Mountain South Side / Summit (1,280 ft) to Bear Mountain Inn"
+    ],
+    "transit_start": {
+      "station": "Route 32 & Smith Clove Rd (Highland Mills / Central Valley, NY)",
+      "mode": "Intercity Bus",
+      "hub": "Port Authority Bus Terminal (Gate 405 / 409)",
+      "details": "Coach USA ShortLine Hudson Bus (Route 32 corridor towards Newburgh via Central Valley) from Port Authority Bus Terminal to Rt 32 & Smith Clove Rd (~75 min).",
+      "url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf",
+      "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+    },
+    "transit_end": {
+      "station": "Bear Mountain Inn, Tomkins Cove, NY",
+      "mode": "Intercity Bus",
+      "hub": "Port Authority Bus Terminal (Gate 405)",
+      "details": "Coach USA ShortLine Hudson Bus direct from Bear Mountain Inn back to Port Authority Bus Terminal (~94 min).",
+      "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Bear+Mountain+Inn/data=!4m5!4m4!2m2!6e0!8j1792932066!3e3",
+      "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+    },
+    "waypoints": [
+      {
+        "name": "Rt 32 & Smith Clove Rd",
+        "lat": 41.352,
+        "lon": -74.122,
+        "dist": 0.0,
+        "elev": 520
+      },
+      {
+        "name": "Long Path Trailhead",
+        "lat": 41.348,
+        "lon": -74.095,
+        "dist": 1.8,
+        "elev": 790
+      },
+      {
+        "name": "West Point Ridge (LP)",
+        "lat": 41.339,
+        "lon": -74.062,
+        "dist": 4.4,
+        "elev": 1150
+      },
+      {
+        "name": "Torrey Memorial (Long Mtn)",
+        "lat": 41.325,
+        "lon": -74.035,
+        "dist": 7.1,
+        "elev": 1060
+      },
+      {
+        "name": "Popolopen Gorge",
+        "lat": 41.3195,
+        "lon": -74.019,
+        "dist": 8.9,
+        "elev": 540
+      },
+      {
+        "name": "Anthony Wayne / AT Jct",
+        "lat": 41.302,
+        "lon": -74.028,
+        "dist": 10.6,
+        "elev": 820
+      },
+      {
+        "name": "Bear Mtn South Shoulder",
+        "lat": 41.3115,
+        "lon": -74.006,
+        "dist": 12.8,
+        "elev": 1240
+      },
+      {
+        "name": "Bear Mountain Inn",
+        "lat": 41.3128,
+        "lon": -73.9889,
+        "dist": 14.7,
+        "elev": 160
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "date": "Sat. Oct. 31, 2026",
+    "title": "Manicure the Nurian Trail: Hike to Tuxedo Station",
+    "region": "Harriman State Park, NY",
+    "park_url": "https://www.palisadesparks.org/harriman",
+    "leader": "Trails Committee Chair (Peter)",
+    "pace": "Brisk pace (Trail Maintenance + Hike)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 11.5,
+    "elevation_gain_ft": 2150,
+    "max_elev_ft": 1240,
+    "min_elev_ft": 420,
+    "route_type": "Point-to-Point Trail Work & Traverse",
+    "map_ref": "NY-NJTC Map 119",
+    "map_url": "https://scenesfromthetrail.com/tag/nurian-trail/",
+    "summary": "Saturday volunteer trail maintenance & hike. Meet at Southfields bus stop on Rte. 17. Volunteers remove blowdowns and trim overgrown vegetation on the Nurian Trail in Harriman State Park, then hike out via White Bar and Ramapo-Dunderberg trails to Tuxedo Station.",
+    "trail_sequence": [
+      "Southfields Bus Stop (Rte. 17) to Nurian Trail Approach",
+      "Nurian Trail (White) \u2014 Stahahe High Peak, Green Pond Mtn & Valley of Boulders",
+      "Dunning Trail / White Bar Trail (White) Junction",
+      "Ramapo-Dunderberg Trail (Red) over Claudius Smith Den",
+      "Descent to Tuxedo Train Station"
+    ],
+    "transit_start": {
+      "station": "Southfields, NY (Rt 17 & Old Orange Tpk)",
+      "mode": "Intercity Bus",
+      "hub": "Port Authority Bus Terminal (Gate 403 / 408)",
+      "details": "Coach USA ShortLine Hudson Bus direct from Port Authority Bus Terminal to Rt 17 & Old Orange Tpk, Southfields (~57\u201364 min).",
+      "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Rt+17+%26+Old+Orange+Tpk/data=!4m5!4m4!2m2!6e0!8j1792868766!3e3",
+      "agency_url": "https://web.coachusa.com/coachusaassets/files/98/hudsonl.pdf"
+    },
+    "transit_end": {
+      "station": "Tuxedo Station, Tuxedo Park, NY",
+      "mode": "Commuter Rail",
+      "hub": "Penn Station / Secaucus Junction",
+      "details": "NJ Transit Port Jervis Line from Tuxedo Station to Secaucus Junction & NY Penn Station (~74\u201378 min) or Hoboken.",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Tuxedo/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+      "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+    },
+    "waypoints": [
+      {
+        "name": "Southfields (Rt 17)",
+        "lat": 41.2519,
+        "lon": -74.1772,
+        "dist": 0.0,
+        "elev": 510
+      },
+      {
+        "name": "Nurian Trailhead",
+        "lat": 41.25,
+        "lon": -74.162,
+        "dist": 1.2,
+        "elev": 740
+      },
+      {
+        "name": "Stahahe High Peak",
+        "lat": 41.246,
+        "lon": -74.148,
+        "dist": 2.8,
+        "elev": 1180
+      },
+      {
+        "name": "Valley of Boulders",
+        "lat": 41.2435,
+        "lon": -74.132,
+        "dist": 4.5,
+        "elev": 960
+      },
+      {
+        "name": "Black Ash Swamp / White Bar",
+        "lat": 41.2395,
+        "lon": -74.122,
+        "dist": 6.1,
+        "elev": 1050
+      },
+      {
+        "name": "Parker Cabin Mtn (R-D)",
+        "lat": 41.224,
+        "lon": -74.142,
+        "dist": 8.0,
+        "elev": 1240
+      },
+      {
+        "name": "Claudius Smith Den",
+        "lat": 41.204,
+        "lon": -74.172,
+        "dist": 9.8,
+        "elev": 1020
+      },
+      {
+        "name": "Tuxedo Station",
+        "lat": 41.1942,
+        "lon": -74.1847,
+        "dist": 11.5,
+        "elev": 420
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "date": "Sat. Nov. 7, 2026",
+    "title": "Hewitt to Wanaque",
+    "region": "Norvin Green State Forest, NJ",
+    "park_url": "https://dep.nj.gov/parksandforests/state-park/norvin-green-state-forest/",
+    "leader": "Erik",
+    "pace": "Fast pace (Strenuous)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 15.6,
+    "elevation_gain_ft": 3380,
+    "max_elev_ft": 1315,
+    "min_elev_ft": 260,
+    "route_type": "Point-to-Point Highlands Traverse",
+    "map_ref": "NY-NJTC Map 151 (formerly 115)",
+    "map_url": "https://www.njhiking.com/best-hikes-in-nj-norvin-green/",
+    "summary": "Saturday hike. From Hewitt, follow Highlands and Burnt Meadow trails to Tapawingo Trail over Long Hill to Overlook Rock Trail. Use Manaticut Trail to Manaticut Point, Pink Trail to Camp Wyanokie & Wyanokie Circular, connector to Macopin Trail, then Hewitt-Butler Trail over Wyanokie High Point, Yoo-Hoo Point and Carris Hill. Join Lower and Posts Brook trails past Chikahoki Falls and exit via Doty Road to Wanaque.",
+    "trail_sequence": [
+      "Hewitt (Lakeside Rd) to Highlands (Teal) & Burnt Meadow Trails",
+      "Tapawingo Trail over Long Hill to Overlook Rock & Manaticut Point",
+      "Pink Trail, Camp Wyanokie, Wyanokie Circular & Macopin Trail",
+      "Hewitt-Butler Trail over Wyanokie High Point (1,145 ft), Yoo-Hoo Point & Carris Hill",
+      "Lower & Posts Brook Trails via Chikahoki Falls to Doty Rd / Wanaque"
+    ],
+    "transit_start": {
+      "station": "Hewitt, NJ (Lakeside Rd at Greenwood Lake Tpke)",
+      "mode": "Intercity Bus",
+      "hub": "Port Authority Bus Terminal (Platform 233_1)",
+      "details": "NJ Transit Bus 197 (heading towards Warwick via Willowbrook) from PABT Platform 233_1 to Lakeside Rd N of Greenwood Lake Tpke (~105 min).",
+      "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Lakeside+Rd+202'+N+of+Greenwood+Lake+Tpke./data=!4m5!4m4!2m2!6e0!8j1792848443!3e3",
+      "agency_url": "https://www.njtransit.com/"
+    },
+    "transit_end": {
+      "station": "Wanaque, NJ (Ringwood Ave at Father Hayes Dr)",
+      "mode": "Intercity Bus",
+      "hub": "Port Authority Bus Terminal (Platform 233_1)",
+      "details": "NJ Transit Bus 197 direct from Ringwood Ave at Father Hayes Dr in Wanaque back to Port Authority Bus Terminal (~74 min, departures every 30\u201360 min).",
+      "url": "https://www.google.com/maps/dir/Port+Authority+Bus+Terminal/Ringwood+Ave+at+Father+Hayes+Dr/data=!4m5!4m4!2m2!6e0!8j1792848443!3e3",
+      "agency_url": "https://www.njtransit.com/"
+    },
+    "waypoints": [
+      {
+        "name": "Hewitt (Lakeside Rd)",
+        "lat": 41.148,
+        "lon": -74.354,
+        "dist": 0.0,
+        "elev": 640
+      },
+      {
+        "name": "Long Hill (Tapawingo)",
+        "lat": 41.132,
+        "lon": -74.358,
+        "dist": 2.4,
+        "elev": 1120
+      },
+      {
+        "name": "Overlook Rock",
+        "lat": 41.119,
+        "lon": -74.364,
+        "dist": 4.2,
+        "elev": 1315
+      },
+      {
+        "name": "Manaticut Point",
+        "lat": 41.105,
+        "lon": -74.359,
+        "dist": 6.1,
+        "elev": 1060
+      },
+      {
+        "name": "Camp Wyanokie / Macopin",
+        "lat": 41.092,
+        "lon": -74.345,
+        "dist": 8.4,
+        "elev": 780
+      },
+      {
+        "name": "Wyanokie High Point",
+        "lat": 41.0764,
+        "lon": -74.3314,
+        "dist": 10.6,
+        "elev": 1145
+      },
+      {
+        "name": "Yoo-Hoo Point & Carris Hill",
+        "lat": 41.068,
+        "lon": -74.324,
+        "dist": 12.3,
+        "elev": 1080
+      },
+      {
+        "name": "Chikahoki Falls",
+        "lat": 41.062,
+        "lon": -74.316,
+        "dist": 13.7,
+        "elev": 620
+      },
+      {
+        "name": "Wanaque (Ringwood Ave)",
+        "lat": 41.053,
+        "lon": -74.292,
+        "dist": 15.6,
+        "elev": 260
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "date": "Sun. Nov. 15, 2026",
+    "title": "Melzingah Reservoir",
+    "region": "East Hudson Highlands, NY",
+    "park_url": "https://en.wikipedia.org/wiki/Hudson_Highlands_State_Park",
+    "leader": "Brian",
+    "pace": "Fast pace (Strenuous)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 15.5,
+    "elevation_gain_ft": 3850,
+    "max_elev_ft": 1540,
+    "min_elev_ft": 15,
+    "route_type": "Point-to-Point Ridge & Reservoir Traverse",
+    "map_ref": "NY-NJTC Map 102 (East Hudson)",
+    "map_url": "https://www.nynjtc.org/wp-content/uploads/2024/09/so03.pdf",
+    "summary": "From Beacon station, follow Walcott Avenue to Casino Trail, ascend to Breakneck Ridge Trail past the Mount Beacon Fire Tower. Join Wilkinson Memorial Trail to Notch Trail, hike to Melzingah Reservoir and circle it. Return via woods roads to Notch Trail, Wilkinson Memorial, Connector to Breakneck Ridge Trail, then Cornish Trail to Rte. 9D and Cold Spring station.",
+    "trail_sequence": [
+      "Beacon Station along Walcott Ave to Mount Beacon Incline / Casino Trail (Red)",
+      "South Beacon Mountain Fire Tower (1,540 ft) on Breakneck Ridge Trail (White)",
+      "Wilkinson Memorial Trail (Yellow) & Notch Trail (Blue) to Melzingah Reservoir Loop",
+      "Rejoin Wilkinson Memorial & Breakneck Ridge Trail over Sugarloaf North",
+      "Cornish Estate Trail (Blue) to NY-9D & Cold Spring Metro-North Station"
+    ],
+    "transit_start": {
+      "station": "Beacon Station, Beacon, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North Hudson Line direct from Grand Central Terminal to Beacon (~89\u201397 min, departures every 20\u201330 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Beacon/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "transit_end": {
+      "station": "Cold Spring Station, Cold Spring, NY",
+      "mode": "Commuter Rail",
+      "hub": "Grand Central Terminal",
+      "details": "MTA Metro-North Hudson Line direct from Cold Spring back to Grand Central Terminal (~78\u201385 min, departures every 20\u201330 min).",
+      "url": "https://www.google.com/maps/dir/Grand+Central/Cold+Spring/data=!4m5!4m4!2m2!6e0!8j1792848000!3e3",
+      "agency_url": "https://www.mta.info/agency/metro-north-railroad"
+    },
+    "waypoints": [
+      {
+        "name": "Beacon Station",
+        "lat": 41.5058,
+        "lon": -73.9844,
+        "dist": 0.0,
+        "elev": 15
+      },
+      {
+        "name": "Casino Trailhead",
+        "lat": 41.493,
+        "lon": -73.959,
+        "dist": 1.9,
+        "elev": 260
+      },
+      {
+        "name": "Mt Beacon Fire Tower",
+        "lat": 41.4815,
+        "lon": -73.9445,
+        "dist": 3.8,
+        "elev": 1540
+      },
+      {
+        "name": "Scofield Ridge (WMT)",
+        "lat": 41.472,
+        "lon": -73.949,
+        "dist": 5.4,
+        "elev": 1360
+      },
+      {
+        "name": "Melzingah Reservoir",
+        "lat": 41.468,
+        "lon": -73.963,
+        "dist": 7.6,
+        "elev": 680
+      },
+      {
+        "name": "Notch / WMT Climb",
+        "lat": 41.461,
+        "lon": -73.955,
+        "dist": 9.8,
+        "elev": 1220
+      },
+      {
+        "name": "Breakneck Ridge Crest",
+        "lat": 41.448,
+        "lon": -73.969,
+        "dist": 12.1,
+        "elev": 1260
+      },
+      {
+        "name": "Cornish Estate Ruins",
+        "lat": 41.436,
+        "lon": -73.968,
+        "dist": 13.8,
+        "elev": 340
+      },
+      {
+        "name": "Cold Spring Station",
+        "lat": 41.4153,
+        "lon": -73.9581,
+        "dist": 15.5,
+        "elev": 20
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "date": "Sun. Nov. 22, 2026",
+    "title": "Long Island Sunken Meadow State Park Exploration: Circular",
+    "region": "North Shore, Long Island, NY",
+    "park_url": "https://en.wikipedia.org/wiki/Sunken_Meadow_State_Park",
+    "leader": "Peter",
+    "pace": "Brisk pace (Meet 10:10 AM at Kings Park)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 15.0,
+    "elevation_gain_ft": 1350,
+    "max_elev_ft": 210,
+    "min_elev_ft": 5,
+    "route_type": "Circular Park, Beach & Bluff Loop",
+    "map_ref": "LI Greenbelt Trail / Sunken Meadow SP",
+    "map_url": "https://516update.com/p/best-hiking-trails-long-island",
+    "summary": "From Kings Park LIRR station (10:10 AM meet), use village streets to join the trail network at the southern end of Sunken Meadow State Park. Cross Sunken Meadow Creek, complete an out-and-back of the Wetland Trail, walk east along the boardwalk and beach to the mouth of the Nissequogue River, recross SM Creek to ascend the bluff and explore the eastern side of the park, then return to Kings Park station.",
+    "trail_sequence": [
+      "Kings Park LIRR Station (10:10 AM) via Main St to Old Dock Rd Trailhead",
+      "Sunken Meadow Creek Crossing & Western Wetland Trail Out-and-Back",
+      "Sunken Meadow Boardwalk & Long Island Sound Beach to Nissequogue River Mouth",
+      "Long Island Greenbelt Trail Glacial Bluffs (200+ ft) & Cardiac Hill",
+      "Eastern Park Woodlands & Return to Kings Park LIRR Station"
+    ],
+    "transit_start": {
+      "station": "Kings Park LIRR Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Penn Station / Grand Central Madison",
+      "details": "MTA Long Island Rail Road (Port Jefferson Branch via Huntington transfer) from Penn Station to Kings Park (~95\u201399 min; arrives for 10:10 AM meet).",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Kings+Park/data=!4m5!4m4!2m2!6e0!8j1792850220!3e3",
+      "agency_url": "https://www.mta.info/agency/long-island-rail-road"
+    },
+    "transit_end": {
+      "station": "Kings Park LIRR Station, NY",
+      "mode": "Commuter Rail",
+      "hub": "Penn Station / Grand Central Madison",
+      "details": "MTA Long Island Rail Road (Port Jefferson Branch via Huntington transfer) from Kings Park back to Penn Station (~95\u201399 min).",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Kings+Park/data=!4m5!4m4!2m2!6e0!8j1792856100!3e3",
+      "agency_url": "https://www.mta.info/agency/long-island-rail-road"
+    },
+    "waypoints": [
+      {
+        "name": "Kings Park LIRR",
+        "lat": 40.8836,
+        "lon": -73.2564,
+        "dist": 0.0,
+        "elev": 175
+      },
+      {
+        "name": "Southern Park Entry",
+        "lat": 40.898,
+        "lon": -73.255,
+        "dist": 1.3,
+        "elev": 60
+      },
+      {
+        "name": "Sunken Meadow Creek",
+        "lat": 40.906,
+        "lon": -73.258,
+        "dist": 2.4,
+        "elev": 15
+      },
+      {
+        "name": "Wetland Trail West End",
+        "lat": 40.9095,
+        "lon": -73.274,
+        "dist": 4.2,
+        "elev": 25
+      },
+      {
+        "name": "Sunken Meadow Boardwalk",
+        "lat": 40.9105,
+        "lon": -73.252,
+        "dist": 6.2,
+        "elev": 10
+      },
+      {
+        "name": "Nissequogue River Mouth",
+        "lat": 40.908,
+        "lon": -73.229,
+        "dist": 8.0,
+        "elev": 5
+      },
+      {
+        "name": "Eastern Glacial Bluffs",
+        "lat": 40.9045,
+        "lon": -73.235,
+        "dist": 10.1,
+        "elev": 210
+      },
+      {
+        "name": "Cardiac Hill / Greenbelt",
+        "lat": 40.901,
+        "lon": -73.249,
+        "dist": 12.4,
+        "elev": 195
+      },
+      {
+        "name": "Kings Park LIRR",
+        "lat": 40.8836,
+        "lon": -73.2564,
+        "dist": 15.0,
+        "elev": 175
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "date": "Sun. Nov. 29, 2026",
+    "title": "Tuxedo to Suffern, The Long Way",
+    "region": "Harriman State Park, NY",
+    "park_url": "https://www.palisadesparks.org/harriman",
+    "leader": "Hugues",
+    "pace": "Fast pace (Strenuous \u2014 Headlamps Required)",
+    "duration": "7\u20138 hours",
+    "distance_mi": 17.8,
+    "elevation_gain_ft": 3950,
+    "max_elev_ft": 1290,
+    "min_elev_ft": 300,
+    "route_type": "Point-to-Point Multi-Ridge Endurance Traverse",
+    "map_ref": "NY-NJTC Map 118",
+    "map_url": "https://www.nynjtc.org/",
+    "summary": "Strenuous. From Tuxedo station, take Ramapo-Dunderberg Trail to Triangle Trail to White Bar Trail. Cross Rte. 106 to Nurian Trail, right onto RD recrossing 106 to White Cross Trail. Jog on Victory Trail back to White Bar, left on Tuxedo-Mt Ivy to Hillburn-Torne-Sebago, Seven Hills to Kakiat Trail, down to Torne Valley Rd, Pipeline access road, and Suffern-Bear Mountain Trail to Suffern.",
+    "trail_sequence": [
+      "Tuxedo Station to Ramapo-Dunderberg (Red), Triangle (Yellow) & White Bar (White)",
+      "Rte. 106 Crossing, Nurian Trail (White), R-D & White Cross Trail",
+      "Victory Trail (Blue), White Bar & Tuxedo-Mt Ivy Trail (Red)",
+      "Hillburn-Torne-Sebago (Orange) & Seven Hills Trail (Blue)",
+      "Kakiat Trail (White) to Torne Valley Rd, Pipeline & Suffern-Bear Mountain (Yellow) to Suffern"
+    ],
+    "transit_start": {
+      "station": "Tuxedo Station, Tuxedo Park, NY",
+      "mode": "Commuter Rail",
+      "hub": "Penn Station / Secaucus Junction",
+      "details": "NJ Transit Port Jervis Line from NY Penn Station (transfer at Secaucus Junction) to Tuxedo Station (~74\u201378 min).",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Tuxedo/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+      "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+    },
+    "transit_end": {
+      "station": "Suffern Station, Suffern, NY",
+      "mode": "Commuter Rail",
+      "hub": "Penn Station / Secaucus Junction",
+      "details": "NJ Transit Main/Bergen/Port Jervis Line from Suffern Station back to Secaucus Junction & NY Penn Station (~60\u201364 min).",
+      "url": "https://www.google.com/maps/dir/Penn+Station/Suffern/data=!4m5!4m4!2m2!6e0!8j1792847460!3e3",
+      "agency_url": "https://www.njtransit.com/abc_PORT_JERVIS"
+    },
+    "waypoints": [
+      {
+        "name": "Tuxedo Station",
+        "lat": 41.1942,
+        "lon": -74.1847,
+        "dist": 0.0,
+        "elev": 420
+      },
+      {
+        "name": "R-D / Triangle Trail",
+        "lat": 41.208,
+        "lon": -74.165,
+        "dist": 2.2,
+        "elev": 1060
+      },
+      {
+        "name": "Rte 106 & Nurian Loop",
+        "lat": 41.229,
+        "lon": -74.142,
+        "dist": 4.6,
+        "elev": 1190
+      },
+      {
+        "name": "White Cross & Victory",
+        "lat": 41.216,
+        "lon": -74.131,
+        "dist": 6.8,
+        "elev": 1140
+      },
+      {
+        "name": "Tuxedo-Mt Ivy Jct",
+        "lat": 41.198,
+        "lon": -74.135,
+        "dist": 9.1,
+        "elev": 980
+      },
+      {
+        "name": "HTS & Seven Hills",
+        "lat": 41.178,
+        "lon": -74.144,
+        "dist": 11.4,
+        "elev": 1290
+      },
+      {
+        "name": "Kakiat Trail Ridge",
+        "lat": 41.158,
+        "lon": -74.142,
+        "dist": 13.8,
+        "elev": 1020
+      },
+      {
+        "name": "Torne Valley / SBM Trail",
+        "lat": 41.139,
+        "lon": -74.146,
+        "dist": 15.8,
+        "elev": 520
+      },
+      {
+        "name": "Suffern Station",
+        "lat": 41.1144,
+        "lon": -74.1578,
+        "dist": 17.8,
+        "elev": 300
+      }
+    ]
+  }
+];
+
+    let currentHikeIndex = 0;
+    let activeFilter = 'all';
+    let searchQuery = '';
+    let mapInstance = null;
+    let tileLayerStreet = null;
+    let tileLayerTopo = null;
+    let usingTopo = true;
+    let routePolyline = null;
+    let waypointMarkers = [];
+    let elevationChart = null;
+
+    function initApp() {
+      initMap();
+      renderHikeList();
+      renderComparisonTable();
+      selectHike(0);
+
+      document.getElementById('btnViewExplorer').addEventListener('click', () => switchView('explorer'));
+      document.getElementById('btnViewTable').addEventListener('click', () => switchView('table'));
+      document.getElementById('btnBackToExplorer').addEventListener('click', () => switchView('explorer'));
+
+      document.getElementById('btnPrevHike').addEventListener('click', () => {
+        const nextIdx = (currentHikeIndex - 1 + HIKES.length) % HIKES.length;
+        selectHike(nextIdx);
+      });
+      document.getElementById('btnNextHike').addEventListener('click', () => {
+        const nextIdx = (currentHikeIndex + 1) % HIKES.length;
+        selectHike(nextIdx);
+      });
+
+      document.getElementById('searchFilter').addEventListener('input', (e) => {
+        searchQuery = e.target.value.toLowerCase().trim();
+        renderHikeList();
+      });
+
+      document.querySelectorAll('.filter-chip').forEach(btn => {
+        btn.addEventListener('click', () => {
+          activeFilter = btn.getAttribute('data-filter');
+          document.querySelectorAll('.filter-chip').forEach(b => {
+            b.className = 'filter-chip px-2.5 py-1 rounded-md text-xs font-medium bg-slate-200 text-slate-700 hover:bg-slate-300';
+          });
+          btn.className = 'filter-chip px-2.5 py-1 rounded-md text-xs font-semibold bg-emerald-800 text-white';
+          renderHikeList();
+        });
+      });
+
+      document.getElementById('btnToggleTopo').addEventListener('click', () => {
+        if (!mapInstance) return;
+        usingTopo = !usingTopo;
+        if (usingTopo) {
+          if (tileLayerStreet) mapInstance.removeLayer(tileLayerStreet);
+          if (tileLayerTopo) tileLayerTopo.addTo(mapInstance);
+        } else {
+          if (tileLayerTopo) mapInstance.removeLayer(tileLayerTopo);
+          if (tileLayerStreet) tileLayerStreet.addTo(mapInstance);
+        }
+      });
+
+      document.getElementById('btnResetMap').addEventListener('click', () => {
+        if (mapInstance && routePolyline) {
+          mapInstance.fitBounds(routePolyline.getBounds(), { padding: [28, 28] });
+        }
+      });
+    }
+
+    function switchView(viewName) {
+      const exp = document.getElementById('explorerView');
+      const tbl = document.getElementById('tableView');
+      const btnExp = document.getElementById('btnViewExplorer');
+      const btnTbl = document.getElementById('btnViewTable');
+
+      if (viewName === 'explorer') {
+        exp.classList.remove('hidden');
+        tbl.classList.add('hidden');
+        btnExp.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm';
+        btnTbl.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-900/80 text-emerald-100 hover:bg-emerald-800 border border-emerald-700 transition';
+        if (mapInstance) {
+          setTimeout(() => {
+            mapInstance.invalidateSize();
+            if (routePolyline) mapInstance.fitBounds(routePolyline.getBounds(), { padding: [28, 28] });
+          }, 100);
+        }
+      } else {
+        exp.classList.add('hidden');
+        tbl.classList.remove('hidden');
+        btnTbl.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-amber-500 text-slate-950 hover:bg-amber-400 transition shadow-sm';
+        btnExp.className = 'px-3.5 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-emerald-900/80 text-emerald-100 hover:bg-emerald-800 border border-emerald-700 transition';
+      }
+    }
+
+    function initMap() {
+      if (typeof L === 'undefined') {
+        document.getElementById('svgMapFallback').classList.remove('hidden');
+        return;
+      }
+      mapInstance = L.map('trailMap', { zoomControl: true });
+      tileLayerTopo = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+        maxZoom: 17,
+        attribution: '&copy; OpenStreetMap, SRTM | &copy; OpenTopoMap'
+      });
+      tileLayerStreet = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      });
+      tileLayerTopo.addTo(mapInstance);
+    }
+
+    function matchesFilter(hike) {
+      if (activeFilter === 'train' && !hike.transit_start.mode.toLowerCase().includes('rail') && !hike.transit_end.mode.toLowerCase().includes('rail')) {
+        return false;
+      }
+      if (activeFilter === 'bus' && !hike.transit_start.mode.toLowerCase().includes('bus')) {
+        return false;
+      }
+      if (activeFilter === 'circular' && !hike.route_type.toLowerCase().includes('circular') && !hike.route_type.toLowerCase().includes('loop')) {
+        return false;
+      }
+      if (searchQuery) {
+        const hay = (hike.title + ' ' + hike.region + ' ' + hike.date + ' ' + hike.leader + ' ' + hike.summary + ' ' + hike.transit_start.station + ' ' + hike.transit_end.station).toLowerCase();
+        return hay.includes(searchQuery);
+      }
+      return true;
+    }
+
+    function renderHikeList() {
+      const container = document.getElementById('hikeListContainer');
+      container.innerHTML = '';
+      const filtered = HIKES.filter(matchesFilter);
+      document.getElementById('hikeCountBadge').textContent = `${filtered.length} Hike${filtered.length === 1 ? '' : 's'}`;
+
+      if (filtered.length === 0) {
+        container.innerHTML = `<div class="p-6 text-center text-xs text-slate-500">No hikes match your filter. Try clearing the search box.</div>`;
+        return;
+      }
+
+      filtered.forEach(hike => {
+        const idx = HIKES.findIndex(h => h.id === hike.id);
+        const isSelected = idx === currentHikeIndex;
+        const item = document.createElement('button');
+        item.type = 'button';
+        item.className = `w-full text-left p-4 transition flex flex-col gap-1.5 ${isSelected ? 'bg-emerald-50/90 border-l-4 border-l-emerald-700' : 'hover:bg-slate-50'}`;
+        item.innerHTML = `
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-bold ${isSelected ? 'text-emerald-900' : 'text-slate-600'}">${hike.date}</span>
+            <span class="text-[11px] font-semibold px-2 py-0.5 rounded ${hike.transit_start.mode.includes('Bus') ? 'bg-amber-100 text-amber-900' : 'bg-blue-100 text-blue-900'}">${hike.transit_start.mode}</span>
+          </div>
+          <div class="text-sm font-bold text-slate-900 leading-snug">${hike.title}</div>
+          <div class="text-xs text-slate-600">${hike.region} &bull; Leader: ${hike.leader}</div>
+          <div class="flex items-center gap-3 text-xs font-semibold text-slate-700 pt-1">
+            <span>${hike.distance_mi} mi</span>
+            <span>&bull;</span>
+            <span class="text-amber-800">+${hike.elevation_gain_ft.toLocaleString()} ft</span>
+            <span>&bull;</span>
+            <span class="text-slate-500 font-normal truncate">${hike.transit_start.station.split(',')[0]}</span>
+          </div>
+        `;
+        item.addEventListener('click', () => selectHike(idx));
+        container.appendChild(item);
+      });
+    }
+
+    function selectHike(index) {
+      currentHikeIndex = index;
+      const hike = HIKES[index];
+      renderHikeList();
+
+      document.getElementById('detailDate').textContent = hike.date;
+      document.getElementById('detailRouteType').textContent = hike.route_type;
+      const mapLink = document.getElementById('detailMapLink');
+      mapLink.textContent = hike.map_ref + ' ↗';
+      mapLink.href = hike.map_url;
+
+      document.getElementById('detailTitle').textContent = hike.title;
+      const regLink = document.getElementById('detailRegionLink');
+      regLink.textContent = hike.region;
+      regLink.href = hike.park_url;
+
+      document.getElementById('detailLeader').textContent = hike.leader;
+      document.getElementById('detailPace').textContent = hike.pace;
+      document.getElementById('detailDistance').textContent = `${hike.distance_mi} miles`;
+      document.getElementById('detailElevGain').textContent = `+${hike.elevation_gain_ft.toLocaleString()} ft`;
+      document.getElementById('detailElevRange').textContent = `${hike.min_elev_ft} – ${hike.max_elev_ft.toLocaleString()} ft`;
+      document.getElementById('detailDuration').textContent = hike.duration;
+      document.getElementById('detailSummary').textContent = hike.summary;
+
+      // Transit Start
+      document.getElementById('transitStartMode').textContent = hike.transit_start.mode;
+      document.getElementById('transitStartStation').textContent = hike.transit_start.station;
+      document.getElementById('transitStartHub').textContent = hike.transit_start.hub;
+      document.getElementById('transitStartDetails').textContent = hike.transit_start.details;
+      document.getElementById('transitStartUrl').href = hike.transit_start.url;
+      document.getElementById('transitStartAgency').href = hike.transit_start.agency_url;
+
+      // Transit End
+      document.getElementById('transitEndMode').textContent = hike.transit_end.mode;
+      document.getElementById('transitEndStation').textContent = hike.transit_end.station;
+      document.getElementById('transitEndHub').textContent = hike.transit_end.hub;
+      document.getElementById('transitEndDetails').textContent = hike.transit_end.details;
+      document.getElementById('transitEndUrl').href = hike.transit_end.url;
+      document.getElementById('transitEndAgency').href = hike.transit_end.agency_url;
+
+      // Trail Sequence
+      const seqList = document.getElementById('trailSequenceList');
+      seqList.innerHTML = '';
+      hike.trail_sequence.forEach(step => {
+        const li = document.createElement('li');
+        li.className = 'leading-relaxed';
+        li.textContent = step;
+        seqList.appendChild(li);
+      });
+
+      // Waypoint Table
+      const wpBody = document.getElementById('waypointTableBody');
+      wpBody.innerHTML = '';
+      hike.waypoints.forEach((wp, i) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-emerald-50/70 cursor-pointer transition';
+        const badgeColor = i === 0 ? 'bg-green-600 text-white' : (i === hike.waypoints.length - 1 ? 'bg-red-600 text-white' : 'bg-amber-100 text-amber-900');
+        tr.innerHTML = `
+          <td class="py-2 px-3"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full text-[11px] font-bold ${badgeColor}">${i + 1}</span></td>
+          <td class="py-2 px-3 font-medium text-slate-900">${wp.name}</td>
+          <td class="py-2 px-3 text-right text-slate-600">${wp.dist.toFixed(1)} mi</td>
+          <td class="py-2 px-3 text-right font-semibold text-slate-800">${wp.elev.toLocaleString()} ft</td>
+          <td class="py-2 px-3 text-right text-xs text-slate-400 font-mono">${wp.lat.toFixed(3)}, ${wp.lon.toFixed(3)}</td>
+        `;
+        tr.addEventListener('click', () => focusWaypoint(i));
+        wpBody.appendChild(tr);
+      });
+
+      document.getElementById('selectedWaypointBadge').textContent = `Max Peak: ${hike.max_elev_ft.toLocaleString()} ft`;
+      document.getElementById('chartClimbSummary').textContent = `Avg Climb Rate: ~${Math.round(hike.elevation_gain_ft / hike.distance_mi)} ft/mile`;
+
+      updateMapForHike(hike);
+      updateChartForHike(hike);
+    }
+
+    function updateMapForHike(hike) {
+      const wps = hike.waypoints;
+      // Also render SVG fallback
+      const svg = document.getElementById('svgMapFallback');
+      const lats = wps.map(w => w.lat);
+      const lons = wps.map(w => w.lon);
+      const minLat = Math.min(...lats), maxLat = Math.max(...lats);
+      const minLon = Math.min(...lons), maxLon = Math.max(...lons);
+      const latSpan = Math.max(maxLat - minLat, 0.01);
+      const lonSpan = Math.max(maxLon - minLon, 0.01);
+
+      const pts = wps.map(w => {
+        const x = 40 + ((w.lon - minLon) / lonSpan) * 320;
+        const y = 260 - ((w.lat - minLat) / latSpan) * 220;
+        return `${x},${y}`;
+      }).join(' ');
+      svg.innerHTML = `<polyline fill="none" stroke="#1B4332" stroke-width="3" points="${pts}" />`;
+
+      if (!mapInstance) return;
+
+      if (routePolyline) mapInstance.removeLayer(routePolyline);
+      waypointMarkers.forEach(m => mapInstance.removeLayer(m));
+      waypointMarkers = [];
+
+      const latlngs = wps.map(w => [w.lat, w.lon]);
+      routePolyline = L.polyline(latlngs, {
+        color: '#1B4332',
+        weight: 4,
+        opacity: 0.9
+      }).addTo(mapInstance);
+
+      wps.forEach((w, i) => {
+        const isStart = i === 0;
+        const isEnd = i === wps.length - 1;
+        const fillColor = isStart ? '#16A34A' : (isEnd ? '#DC2626' : '#D97706');
+        const radius = (isStart || isEnd) ? 8 : 6;
+
+        const marker = L.circleMarker([w.lat, w.lon], {
+          radius: radius,
+          fillColor: fillColor,
+          color: '#FFFFFF',
+          weight: 2,
+          opacity: 1,
+          fillOpacity: 0.95
+        }).addTo(mapInstance);
+
+        marker.bindPopup(`
+          <div class="text-xs">
+            <div class="font-bold text-slate-900">${i + 1}. ${w.name}</div>
+            <div class="text-slate-600 mt-0.5">Distance: <b>${w.dist.toFixed(1)} mi</b> &bull; Elevation: <b>${w.elev.toLocaleString()} ft</b></div>
+          </div>
+        `);
+
+        marker.on('click', () => {
+          document.getElementById('selectedWaypointBadge').textContent = `${w.name}: ${w.elev.toLocaleString()} ft @ ${w.dist.toFixed(1)} mi`;
+        });
+
+        waypointMarkers.push(marker);
+      });
+
+      mapInstance.fitBounds(routePolyline.getBounds(), { padding: [28, 28] });
+    }
+
+    function focusWaypoint(wpIndex) {
+      const hike = HIKES[currentHikeIndex];
+      const wp = hike.waypoints[wpIndex];
+      document.getElementById('selectedWaypointBadge').textContent = `${wp.name}: ${wp.elev.toLocaleString()} ft @ ${wp.dist.toFixed(1)} mi`;
+      if (mapInstance && waypointMarkers[wpIndex]) {
+        mapInstance.setView([wp.lat, wp.lon], 14, { animate: true });
+        waypointMarkers[wpIndex].openPopup();
+      }
+    }
+
+    function updateChartForHike(hike) {
+      if (typeof Chart === 'undefined') return;
+      const ctx = document.getElementById('elevationChart').getContext('2d');
+      if (elevationChart) {
+        elevationChart.destroy();
+      }
+
+      const labels = hike.waypoints.map(w => `${w.dist.toFixed(1)} mi`);
+      const dataPoints = hike.waypoints.map(w => w.elev);
+      const pointColors = hike.waypoints.map((_, i) => i === 0 ? '#16A34A' : (i === hike.waypoints.length - 1 ? '#DC2626' : '#D97706'));
+
+      elevationChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Elevation (ft)',
+            data: dataPoints,
+            borderColor: '#1B4332',
+            backgroundColor: 'rgba(27, 67, 50, 0.15)',
+            borderWidth: 2.5,
+            pointBackgroundColor: pointColors,
+            pointBorderColor: '#FFFFFF',
+            pointBorderWidth: 1.5,
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            fill: true,
+            tension: 0.32
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          onClick: (evt, elements) => {
+            if (elements && elements.length > 0) {
+              const idx = elements[0].index;
+              focusWaypoint(idx);
+            }
+          },
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                title: (items) => {
+                  const idx = items[0].dataIndex;
+                  const wp = hike.waypoints[idx];
+                  return `${wp.name} (Mile ${wp.dist.toFixed(1)})`;
+                },
+                label: (item) => `Elevation: ${item.raw.toLocaleString()} ft`
+              }
+            }
+          },
+          scales: {
+            x: {
+              title: { display: true, text: 'Cumulative Distance (Miles)', font: { size: 11, weight: '600' } },
+              grid: { color: 'rgba(203, 213, 225, 0.4)' }
+            },
+            y: {
+              title: { display: true, text: 'Elevation (ft)', font: { size: 11, weight: '600' } },
+              suggestedMin: Math.max(0, hike.min_elev_ft - 50),
+              suggestedMax: hike.max_elev_ft + 100,
+              grid: { color: 'rgba(203, 213, 225, 0.4)' }
+            }
+          }
+        }
+      });
+    }
+
+    function renderComparisonTable() {
+      const tbody = document.getElementById('comparisonTableBody');
+      tbody.innerHTML = '';
+      HIKES.forEach((hike, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition';
+        tr.innerHTML = `
+          <td class="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">${hike.date}</td>
+          <td class="py-3.5 px-4">
+            <div class="font-bold text-slate-900">${hike.title}</div>
+            <div class="text-xs text-slate-500"><a href="${hike.park_url}" target="_blank" rel="noopener noreferrer" class="text-emerald-700 hover:underline">${hike.region}</a> &bull; ${hike.map_ref} &bull; Leader: ${hike.leader}</div>
+          </td>
+          <td class="py-3.5 px-4 text-right font-semibold text-slate-800 whitespace-nowrap">${hike.distance_mi} mi</td>
+          <td class="py-3.5 px-4 text-right font-semibold text-amber-900 whitespace-nowrap">+${hike.elevation_gain_ft.toLocaleString()} ft</td>
+          <td class="py-3.5 px-4">
+            <div class="font-semibold text-slate-800">${hike.transit_start.station}</div>
+            <div class="text-xs text-slate-600">${hike.transit_start.details}</div>
+            <a href="${hike.transit_start.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-700 hover:underline font-medium">Directions ↗</a>
+          </td>
+          <td class="py-3.5 px-4">
+            <div class="font-semibold text-slate-800">${hike.transit_end.station}</div>
+            <div class="text-xs text-slate-600">${hike.transit_end.details}</div>
+            <a href="${hike.transit_end.url}" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-700 hover:underline font-medium">Directions ↗</a>
+          </td>
+          <td class="py-3.5 px-4 text-center">
+            <button type="button" data-idx="${idx}" class="inspect-hike-btn px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-800 text-white hover:bg-emerald-700 transition whitespace-nowrap">
+              Inspect Map &amp; Chart
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      tbody.querySelectorAll('.inspect-hike-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.getAttribute('data-idx'), 10);
+          selectHike(idx);
+          switchView('explorer');
+        });
+      });
+    }
+
+    window.addEventListener('DOMContentLoaded', initApp);
+  </script>
+</body>
+</html>

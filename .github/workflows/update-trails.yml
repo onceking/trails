@@ -1,0 +1,43 @@
+name: Update NY Ramblers Trails Schedule
+
+on:
+  schedule:
+    # Runs every Monday at 12:00 UTC (8:00 AM EDT / 7:00 AM EST)
+    - cron: '0 12 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install beautifulsoup4 matplotlib numpy
+
+      - name: Fetch latest NY Ramblers schedule and update trail data
+        run: |
+          python scripts/update_trails.py
+
+      - name: Commit and push if schedule changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ charts/ docs/
+          if git diff --staged --quiet; then
+            echo "No schedule changes detected."
+          else
+            git commit -m "chore(trails): sync NY Ramblers schedule with attribution ($(date -u +'%Y-%m-%d'))"
+            git push
+          fi
